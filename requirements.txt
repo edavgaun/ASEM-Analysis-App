@@ -11,3 +11,5 @@ scikit-learn
 yellowbrick
 plotly
 voila
+notebook
+ipykernel
