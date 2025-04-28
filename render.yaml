@@ -5,4 +5,4 @@ services:
     plan: free
     branch: main
     buildCommand: pip install -r requirements.txt
-    startCommand: voila app.ipynb --Voila.server_url=/ --port=$PORT --no-browser --Voila.ip=0.0.0.0 --strip_sources=True
+    startCommand: voila app.ipynb --Voila.server_url=/ --port=$PORT --no-browser --Voila.ip=0.0.0.0 --strip_sources=True --debug
