@@ -4,6 +4,9 @@ from utils.text_processing import load_stopwords
 from charts.bubble_chart import plot_bubble_chart
 from charts.radar_chart import compare_radar_streamlit
 from utils.constants import YEAR_RANGE
+from utils.text_processing import load_spacy_model
+
+nlp = load_spacy_model()
 
 # Load your datasets
 data_full = load_data_full()
