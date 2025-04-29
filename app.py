@@ -21,7 +21,7 @@ def load_stopwords():
     return stopwords
 
 own_stopwords = load_stopwords()
-st.success(f"{len(own_stopwords)} stopwords loaded successfully.")
+st.success(f"The custom stopword dictionary contains {len(own_stopwords)} terms.")
 
 @st.cache_data
 def load_bubble_data():
@@ -73,6 +73,36 @@ if top_words:
     st.pyplot(fig)
 else:
     st.info("Please select one or more words to display the bubble chart.")
+
+st.header("📡 Radar Chart: Frequency Pattern of a Word")
+
+# Single word selector
+selected_word = st.selectbox("Select a word to view its 10-year frequency pattern:", sorted(data_full.index))
+
+if selected_word:
+    # Extract frequency data
+    freq_cols = [f"frq_{y}" for y in range(2015, 2025)]
+    values = data_full.loc[selected_word, freq_cols].values.tolist()
+    
+    # Normalize values if needed
+    values = [v if not np.isnan(v) else 0 for v in values]
+
+    # Setup labels and angles
+    labels = [str(y) for y in range(2015, 2025)]
+    angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
+    values += values[:1]  # close the loop
+    angles += angles[:1]
+
+    # Plot
+    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+    ax.plot(angles, values, color='teal', linewidth=2)
+    ax.fill(angles, values, color='teal', alpha=0.25)
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(labels)
+    ax.set_title(f"'{selected_word}' Frequency Trend", size=14, weight='bold')
+    ax.grid(True, linestyle='--', alpha=0.5)
+
+    st.pyplot(fig)
 
 # Load a sample data file from GitHub
 @st.cache_data
