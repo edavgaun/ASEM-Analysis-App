@@ -23,7 +23,7 @@ st.success(f"{len(own_stopwords)} stopwords loaded successfully.")
 # Load a sample data file from GitHub
 @st.cache_data
 def load_sample_data(year):
-    url = f"https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/Data/ASEM_{year}.csv"
+    url = f"https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/Data/CP_{year}.csv"
     df = pd.read_csv(url, index_col=0)
     return df
 
