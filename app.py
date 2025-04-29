@@ -15,7 +15,6 @@ data_full = load_data_full()
 df_long = load_df_long()
 dfs = load_dfs()
 bow_dfs = load_bow_dfs()
-own_stopwords = load_stopwords()
 
 st.title("ASEM Conference Analysis App")
 
