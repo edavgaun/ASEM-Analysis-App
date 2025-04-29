@@ -1,12 +1,14 @@
 import streamlit as st
 from utils.preprocessing import load_data_full, load_df_long, load_dfs, load_bow_dfs
-from utils.text_processing import load_stopwords
+from utils.helper_functions import get_topN_word_bow_df, get_word_frq, get_combinations
+from utils.constants import YEAR_RANGE
+from utils.text_processing import load_all_stopwords
 from Charts.bubble_chart import plot_bubble_chart
 from Charts.radar_chart import compare_radar_streamlit
-from utils.constants import YEAR_RANGE
-from utils.text_processing import load_spacy_model
 
-nlp = load_spacy_model()
+
+stopwords_url = "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/Data/own_stopwords.txt"
+combined_stopwords = load_all_stopwords(stopwords_url)
 
 # Load your datasets
 data_full = load_data_full()
@@ -14,9 +16,6 @@ df_long = load_df_long()
 dfs = load_dfs()
 bow_dfs = load_bow_dfs()
 own_stopwords = load_stopwords()
-
-# Define your helper functions (make sure they are available, or move them to utils too)
-from charts.helper_functions import get_topN_word_bow_df, get_word_frq, get_combinations
 
 st.title("ASEM Conference Analysis App")
 
