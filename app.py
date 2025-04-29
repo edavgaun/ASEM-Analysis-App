@@ -49,7 +49,8 @@ if top_words:
     )
 
     # Add text labels
-    max_val = df_long["frq"].max()
+    freq_cols = [f"frq_{y}" for y in range(2015, 2025)]
+    max_val = data_full.loc[top_words, freq_cols].max().max()
     threshold = max_val * 0.6
     
     for word in top_words:
