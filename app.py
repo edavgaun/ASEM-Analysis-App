@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.preprocessing import load_data_full, load_df_long, load_dfs, load_bow_dfs
+from utils.preprocessing import load_data_full, load_df_long, load_dfs
 from utils.helper_functions import get_topN_word_bow_df, get_word_frq, get_combinations
 from utils.constants import YEAR_RANGE
 from utils.text_processing import load_all_stopwords
