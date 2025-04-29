@@ -1,13 +1,12 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
-def load_bow_dfs():
-    bow_dfs = {}
-    for year in range(2015, 2025):
-        url = f"Data/bow_df_{year}.csv"
-        bow_dfs[year] = pd.read_csv(url)
-    return bow_dfs
+nltk.download('punkt')
+nltk.download('stopwords')
     
 def get_corpus(df, year):
   corpus=", ".join([t.lower() if type(t)!=float else "" for t in df.Title.values])
@@ -18,10 +17,11 @@ def get_corpus(df, year):
   corpus=corpus.replace("4,0", "4.0").replace("5,0", "5.0")
   return corpus
 
-def get_tokens(corpus, nlp=nlp):
-  concepts=[t.replace("--", "-").replace("-", " ") for t in set(corpus.split(", ")) if len(t)>=2]
-  doc = nlp(", ".join(concepts))
-  return doc
+def get_tokens(corpus):
+    stop_words = set(stopwords.words('english'))
+    words = word_tokenize(corpus.lower())
+    tokens = [word for word in words if word.isalpha() and word not in stop_words]
+    return tokens
 
 def get_bow(tokens):
   bow_kw={}
