@@ -3,6 +3,7 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 import streamlit as st
+from utils.constants import GRID_STYLE
 
 def plot_bubble_chart(top_words, df_long, data_full):
     if not top_words:
@@ -18,7 +19,6 @@ def plot_bubble_chart(top_words, df_long, data_full):
         edgecolor='k', ax=ax, legend=False
     )
 
-    # Calculate dynamic threshold for label styling
     freq_cols = [f"frq_{y}" for y in range(2015, 2025)]
     max_val = data_full.loc[top_words, freq_cols].max().max()
     threshold = max_val * 0.6
@@ -38,6 +38,6 @@ def plot_bubble_chart(top_words, df_long, data_full):
     ax.set_ylim(-0.5, len(top_words) - 0.25)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
-    plt.grid(axis='both', linestyle='--', alpha=0.4)
+    plt.grid(**GRID_STYLE)
     plt.tight_layout()
     st.pyplot(fig)
