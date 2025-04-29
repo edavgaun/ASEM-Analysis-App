@@ -1,5 +1,4 @@
 import requests
-import spacy
 
 # Load stopwords from GitHub
 def load_stopwords():
@@ -11,6 +10,7 @@ def load_stopwords():
 
 # Load spaCy model (call this only if needed)
 def load_spacy_model():
+    import spacy
     try:
         nlp = spacy.load("en_core_web_sm")
     except OSError:
