@@ -12,7 +12,8 @@ def load_stopwords():
 # Load spaCy model (call this only if needed)
 def load_spacy_model():
     try:
-        return spacy.load("en_core_web_sm")
+        nlp = spacy.load("en_core_web_sm")
     except OSError:
-        # Optional: handle installation dynamically
-        raise RuntimeError("spaCy model 'en_core_web_sm' is not installed. Please install it before running the app.")
+        # You could also try: spacy.cli.download("en_core_web_sm")
+        raise OSError("The 'en_core_web_sm' model is missing. Install it with: python -m spacy download en_core_web_sm")
+    return nlp
