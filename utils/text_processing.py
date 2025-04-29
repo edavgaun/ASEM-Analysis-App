@@ -1,4 +1,9 @@
 import requests
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 # Load stopwords from GitHub
 def load_stopwords():
@@ -7,14 +12,3 @@ def load_stopwords():
     content = response.text.replace("\n", ", ").split(", ")
     content = [word.strip() for word in content if word.strip()]
     return sorted(set(content))
-
-# Load spaCy model (call this only if needed)
-def load_spacy_model():
-    import spacy
-    try:
-        nlp = spacy.load("en_core_web_sm")
-    except OSError:
-        from spacy.cli import download
-        download("en_core_web_sm")
-        nlp = spacy.load("en_core_web_sm")
-    return nlp
