@@ -4,8 +4,8 @@ import requests
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-from charts.bubble_chart import plot_bubble_chart
-from charts.radar_chart import compare_radar_streamlit
+from Charts.bubble_chart import plot_bubble_chart
+from Charts.radar_chart import compare_radar_streamlit
 
 # Page configuration
 st.set_page_config(page_title="ASEM Analysis App", layout="wide")
