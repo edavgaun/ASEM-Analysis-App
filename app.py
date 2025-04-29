@@ -1,3 +1,8 @@
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 import streamlit as st
 from utils.preprocessing import load_data_full, load_df_long, load_dfs
 from utils.helper_functions import *
