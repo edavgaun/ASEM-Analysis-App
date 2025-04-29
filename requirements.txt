@@ -1,15 +1,8 @@
+streamlit
 pandas
 numpy
+nltk
 matplotlib
 seaborn
-networkx
-ipywidgets
 wordcloud
-Pillow
-scikit-learn
-yellowbrick
 plotly
-voila
-notebook
-ipykernel
-nltk
