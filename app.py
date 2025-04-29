@@ -45,7 +45,7 @@ if top_words:
         data=df_long[df_long["Word"].isin(top_words)],
         x="year", y="Word", size="frq", hue="frq",
         palette='Blues', sizes=(100, 3000),
-        edgecolor='k', ax=ax
+        edgecolor='k', ax=ax, legend=None
     )
 
     # Add text labels
