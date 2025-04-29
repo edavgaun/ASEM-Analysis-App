@@ -1,44 +1,37 @@
 import streamlit as st
-import pandas as pd
-import requests
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
-from utils.preprocessing import load_data_full, load_df_long, load_bow_dfs, load_dfs
-from utils.text_processing import load_stopwords, load_spacy_model
-from utils.constants import YEAR_RANGE, COLOR_RED, GRID_STYLE
-from Charts.bubble_chart import plot_bubble_chart
-from Charts.radar_chart import compare_radar_streamlit
+from utils.preprocessing import load_data_full, load_df_long, load_dfs, load_bow_dfs
+from utils.text_processing import load_stopwords
+from charts.bubble_chart import plot_bubble_chart
+from charts.radar_chart import compare_radar_streamlit
+from utils.constants import YEAR_RANGE
 
-# Page configuration
-st.set_page_config(page_title="ASEM Analysis App", layout="wide")
-
-# Title
-st.title("ASEM Conference Data Analysis (2015–2024)")
-
-# Load stopwords from GitHub
-@st.cache_data
-def load_stopwords():
-    url = "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/Data/own_stopwords.txt"
-    response = requests.get(url)
-    stopwords = response.text.replace("\n", ", ").split(", ")
-    stopwords.sort()
-    return stopwords
-
-own_stopwords = load_stopwords()
-nlp = load_spacy_model()  # Only if needed
-st.success(f"The custom stopword dictionary contains {len(own_stopwords)} terms.")
-
-# Load all data
+# Load your datasets
 data_full = load_data_full()
 df_long = load_df_long()
-bow_dfs = load_bow_dfs()
 dfs = load_dfs()
+bow_dfs = load_bow_dfs()
+own_stopwords = load_stopwords()
 
-# Create bubble chart
+# Define your helper functions (make sure they are available, or move them to utils too)
+from charts.helper_functions import get_topN_word_bow_df, get_word_frq, get_combinations
+
+st.title("ASEM Conference Analysis App")
+
+# BUBBLE CHART SECTION
+st.header("Bubble Chart: Word Frequencies Across Years")
 top_words = st.multiselect("Select words to display:", options=sorted(data_full.index), default=[])
 
-plot_bubble_chart(top_words, df_long, data_full)
+if top_words:
+    plot_bubble_chart(top_words, df_long, data_full)
+else:
+    st.info("Please select one or more words to display the bubble chart.")
 
-# Create radar chart
-compare_radar_streamlit(word, topN_Words, year1, year2, dfs, bow_dfs, get_topN_word_bow_df, get_word_frq, get_combinations)
+# RADAR CHART SECTION
+st.header("Radar Chart Comparison")
+word = st.text_input("Word to compare (case insensitive):")
+topN_Words = st.slider("Top N words for comparison", min_value=10, max_value=200, step=10, value=50)
+year1 = st.selectbox("First year", YEAR_RANGE)
+year2 = st.selectbox("Second year", YEAR_RANGE)
+
+if word:
+    compare_radar_streamlit(word, topN_Words, year1, year2, dfs, bow_dfs, get_topN_word_bow_df, get_word_frq, get_combinations)
