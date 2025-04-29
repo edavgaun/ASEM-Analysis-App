@@ -1,6 +1,6 @@
 import streamlit as st
 from utils.preprocessing import load_data_full, load_df_long, load_dfs
-from utils.helper_functions import get_topN_word_bow_df, get_word_frq, get_combinations
+from utils.helper_functions import *
 from utils.constants import YEAR_RANGE
 from utils.text_processing import load_all_stopwords
 from Charts.bubble_chart import plot_bubble_chart
