@@ -14,6 +14,7 @@ def load_spacy_model():
     try:
         nlp = spacy.load("en_core_web_sm")
     except OSError:
-        # You could also try: spacy.cli.download("en_core_web_sm")
-        raise OSError("The 'en_core_web_sm' model is missing. Install it with: python -m spacy download en_core_web_sm")
+        from spacy.cli import download
+        download("en_core_web_sm")
+        nlp = spacy.load("en_core_web_sm")
     return nlp
