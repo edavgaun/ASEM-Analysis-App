@@ -4,7 +4,10 @@ import streamlit as st
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 nltk.download('punkt')
 nltk.download('stopwords')
     
@@ -24,15 +27,13 @@ def get_tokens(corpus):
     return tokens
 
 def get_bow(tokens):
-  bow_kw={}
-  for token in tokens:
-    if (not token.is_stop) and (not token.is_punct) and (not token.is_digit) \
-        and (len(token)>=2):
-      try:
-        bow_kw[token.lemma_]+=1
-      except:
-        bow_kw[token.lemma_]=1
-  return bow_kw
+    lemmatizer = WordNetLemmatizer()
+    bow_kw = {}
+    for token in tokens:
+        if len(token) >= 2:
+            lemma = lemmatizer.lemmatize(token.lower())
+            bow_kw[lemma] = bow_kw.get(lemma, 0) + 1
+    return bow_kw
 
 def get_bow_df(bow):
   df_kw=pd.DataFrame({"Word":bow.keys(), "frq":bow.values()}).sort_values("frq", ascending=False
