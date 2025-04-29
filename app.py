@@ -6,6 +6,7 @@ from utils.text_processing import load_all_stopwords
 from Charts.bubble_chart import plot_bubble_chart
 from Charts.radar_chart import compare_radar_streamlit
 
+stopwords_url = "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/Data/own_stopwords.txt"
 combined_stopwords = load_all_stopwords(stopwords_url)
 
 # Load your datasets
