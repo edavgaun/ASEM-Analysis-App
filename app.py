@@ -6,15 +6,22 @@ from utils.text_processing import load_all_stopwords
 from Charts.bubble_chart import plot_bubble_chart
 from Charts.radar_chart import compare_radar_streamlit
 
-
-stopwords_url = "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/Data/own_stopwords.txt"
 combined_stopwords = load_all_stopwords(stopwords_url)
 
 # Load your datasets
 data_full = load_data_full()
 df_long = load_df_long()
 dfs = load_dfs()
-bow_dfs = load_bow_dfs()
+
+# Build Bag of Words for each year
+bow_dfs = {}
+
+for year, df in dfs.items():
+    corpus = get_corpus(df, year)
+    tokens = get_tokens(corpus)  # NLTK version
+    bow = get_bow(tokens)         # fixed for NLTK
+    bow_df = get_bow_df(bow)       # your existing clean function
+    bow_dfs[year] = bow_df
 
 st.title("ASEM Conference Analysis App")
 
