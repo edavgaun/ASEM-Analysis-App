@@ -1,8 +1,8 @@
 import streamlit as st
 from utils.preprocessing import load_data_full, load_df_long, load_dfs, load_bow_dfs
 from utils.text_processing import load_stopwords
-from charts.bubble_chart import plot_bubble_chart
-from charts.radar_chart import compare_radar_streamlit
+from Charts.bubble_chart import plot_bubble_chart
+from Charts.radar_chart import compare_radar_streamlit
 from utils.constants import YEAR_RANGE
 from utils.text_processing import load_spacy_model
 
