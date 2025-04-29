@@ -1,0 +1,14 @@
+pandas
+numpy
+matplotlib
+seaborn
+spacy
+networkx
+ipywidgets
+wordcloud
+Pillow
+requests
+scikit-learn
+plotly
+yellowbrick
+gradio
