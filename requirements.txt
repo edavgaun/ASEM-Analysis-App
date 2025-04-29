@@ -12,3 +12,4 @@ plotly
 voila
 notebook
 ipykernel
+nltk
