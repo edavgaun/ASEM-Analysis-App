@@ -49,14 +49,17 @@ if top_words:
     )
 
     # Add text labels
+    max_val = df_long["frq"].max()
+    threshold = max_val * 0.6
+    
     for word in top_words:
         for year in range(2015, 2025):
             col_name = f"frq_{year}"
             if col_name in data_full.columns:
                 val = data_full.loc[word, col_name]
                 if not pd.isna(val):
-                    txt_color = "white" if val > 315 else "black"
-                    weight = "bold" if val > 315 else "normal"
+                    txt_color = "white" if val >= threshold else "black"
+                    weight = "bold" if val >= threshold else "normal"
                     plt.text(year, word, str(int(val)),
                              ha='center', va='center',
                              fontsize=8, color=txt_color, fontweight=weight, alpha=0.8)
