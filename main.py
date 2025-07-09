@@ -84,7 +84,24 @@ with st.container():
         draw_word_cloud(bows)
     
     with col2:
-        st.subheader("Plot 4 or Input 4")
+        st.subheader("Keyword Frequency Bubble Chart")
+    
+        from Modules.Utils.get_wide_df import get_wide_df
+        from Modules.Chart.Bubble_chart import Bubble_chart
+    
+        data_full = get_wide_df()
+    
+        selected_words = st.multiselect(
+            "Select keywords to visualize:",
+            options=data_full["Word"].tolist(),
+            default=data_full["Word"].head(5).tolist()
+        )
+    
+        if selected_words:
+            Bubble_chart(selected_words)
+        else:
+            st.info("Please select at least one word to display the chart.")
+
 
 # Row 3
 with st.container():
