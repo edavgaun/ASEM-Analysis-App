@@ -29,7 +29,7 @@ st.title("ASEM 2025 Dashboard Explorer")
 
 # Row 1
 with st.container():
-    col1, col2, col3, col4 = st.columns([1, 2, 2, 2])
+    col1, col2, col3, col4 = st.columns([1, 5])
 
     # --- Column 1: Inputs ---
     with col1:
@@ -45,17 +45,9 @@ with st.container():
         df_slice = df.iloc[row_range[0]:row_range[1] + 1]
 
     # --- Columns 2–4: Output Tables ---
-    with col2:
-        st.subheader("Titles and KeyWords")
-        st.dataframe(df_slice[["Title", "KeyWords"]], use_container_width=True)
-
-    with col3:
-        st.subheader("Abstracts")
-        st.dataframe(df_slice[["Abstract"]], use_container_width=True)
-    
-    with col4:
-        st.subheader("Paper Text Preview")
-        st.dataframe(df_slice[["Paper"]], use_container_width=True)
+    with col_rest:
+    st.subheader("Conference Papers Overview")
+    st.dataframe(df_slice[["Title", "KeyWords", "Abstract", "Paper"]], use_container_width=True)
 
 
 
