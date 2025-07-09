@@ -1,47 +1,54 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-import matplotlib.colors as mcolors
-import seaborn as sns
-import spacy
-from itertools import combinations
-from collections import Counter
-import math
-import networkx as nx
-import ipywidgets as widgets
-from ipywidgets import interact
-from wordcloud import WordCloud
-from PIL import Image
-import requests
-import warnings
-from sklearn.manifold import TSNE
-import plotly.express as px
-from sklearn.cluster import KMeans
-from yellowbrick.cluster import KElbowVisualizer
+import streamlit as st
+#from eda_dashboard import render_eda
+#from lda_viewer import render_lda
+#from load_data import get_html_file_map
+#from city_map import render_city_map
 
-warnings.filterwarnings("ignore")
-nlp = spacy.load("en_core_web_sm")
+# Set layout first
+if "initialized" not in st.session_state:
+    st.set_page_config(layout="wide")
+    st.session_state["initialized"] = True
 
-# Importing all functions
-from Modules.Utils.get_df import get_df
-from Modules.Utils.get_corpus import get_corpus
-from Modules.Utils.get_tokens import get_tokens
-from Modules.Utils.get_bow import get_bow
-from Modules.Utils.get_bow_df import get_bow_df
-from Modules.Utils.get_dict import get_dict
-from Modules.Utils.get_topN_word_bow_df import get_topN_word_bow_df
-from Modules.Utils.get_word_frq import get_word_frq
-from Modules.Utils.get_combinations import get_combinations
-from Modules.Chart.draw_Network import draw_Network
-from Modules.Chart.draw_word_cloud import draw_word_cloud
-from Modules.Chart.radar_chart import radar_chart
-from Modules.Chart.compare_radar import compare_radar
-from Modules.Utils.get_wide_df import get_wide_df
-from Modules.Utils.get_long_df import get_long_df
-from Modules.Chart.Bubble_chart import Bubble_chart
-from Modules.Utils.WS import WS
-from Modules.Chart.update_bubble_chart import update_bubble_chart
-from Modules.Chart.scatterplot3D import scatterplot3D
+# Optional: Remove default top padding
+st.markdown("""
+<style>
+.block-container { padding-top: 1rem; }
+</style>
+""", unsafe_allow_html=True)
 
-# Your original workflow continues here
+# Title
+st.title("ASEM 2025 Dashboard Explorer")
+
+# Row 1
+with st.container():
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Plot 1 or Input 1")
+        # Add any component here: e.g., st.plotly_chart(fig1)
+    with col2:
+        st.subheader("Plot 2 or Input 2")
+        # e.g., st.write(df.head())
+
+# Row 2
+with st.container():
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Plot 3 or Input 3")
+    with col2:
+        st.subheader("Plot 4 or Input 4")
+
+# Row 3
+with st.container():
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Plot 5 or Input 5")
+    with col2:
+        st.subheader("Plot 6 or Input 6")
+
+# Row 4
+with st.container():
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Plot 7 or Input 7")
+    with col2:
+        st.subheader("Plot 8 or Input 8")
