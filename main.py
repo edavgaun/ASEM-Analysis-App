@@ -4,12 +4,8 @@ import streamlit as st
 #from load_data import get_html_file_map
 #from city_map import render_city_map
 
-# Set layout first
-#if "initialized" not in st.session_state:
-#    st.set_page_config(layout="wide")
-#    st.session_state["initialized"] = True
+st.set_page_config(layout="wide")
 
-# Optional: Remove default top padding
 #st.markdown("""
 #<style>
 #.block-container { padding-top: 1rem; }
