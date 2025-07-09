@@ -49,13 +49,13 @@ with st.container():
     st.subheader("Titles and KeyWords")
     st.dataframe(df_slice[["Title", "KeyWords"]], use_container_width=True)
 
-with col3:
-    st.subheader("Abstracts")
-    st.dataframe(df_slice[["Abstract"]], use_container_width=True)
-
-with col4:
-    st.subheader("Paper Text Preview")
-    st.dataframe(df_slice[["Paper"]], use_container_width=True)
+    with col3:
+        st.subheader("Abstracts")
+        st.dataframe(df_slice[["Abstract"]], use_container_width=True)
+    
+    with col4:
+        st.subheader("Paper Text Preview")
+        st.dataframe(df_slice[["Paper"]], use_container_width=True)
 
 
 # Row 2
