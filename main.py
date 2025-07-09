@@ -68,7 +68,6 @@ with st.container():
 with st.container():
     col1, col2 = st.columns(2)
     with col1:
-    with col1:
         st.subheader("StopWords Cloud, ASEM")
         draw_word_cloud(bows)
     
