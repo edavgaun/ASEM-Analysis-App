@@ -29,7 +29,8 @@ st.title("ASEM 2025 Dashboard Explorer")
 
 # Row 1
 with st.container():
-    col1, col2, col3, col4 = st.columns([1, 5])
+    col1, col_rest = st.columns([1, 5])
+
 
     # --- Column 1: Inputs ---
     with col1:
