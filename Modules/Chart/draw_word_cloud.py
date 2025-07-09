@@ -55,4 +55,7 @@ def draw_word_cloud(bows):
     ax.axis('off')
 
     # Show in Streamlit
-    st.pyplot(fig)
+    buf = BytesIO()
+    plt.savefig(buf, format="png", bbox_inches="tight", pad_inches=0.1)
+    st.image(buf.getvalue(), use_column_width=False, width=500)
+
