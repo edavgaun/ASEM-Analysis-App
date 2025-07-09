@@ -46,8 +46,8 @@ with st.container():
 
     # --- Columns 2–4: Output Tables ---
     with col_rest:
-    st.subheader("Conference Papers Overview")
-    st.dataframe(df_slice[["Title", "KeyWords", "Abstract", "Paper"]], use_container_width=True)
+        st.subheader("Conference Papers Overview")
+        st.dataframe(df_slice[["Title", "KeyWords", "Abstract", "Paper"]], use_container_width=True)
 
 
 
