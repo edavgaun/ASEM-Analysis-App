@@ -14,7 +14,7 @@ from Modules.Utils.get_bows_dict import get_bows_dict
 from Modules.Chart.draw_word_cloud import draw_word_cloud
 
 # Variable set up
-_, _, _, bows, _ = get_bows_dict()
+dfs, corpuses, tokenses, bows, bow_dfs = get_bows_dict()
 
 # Main App
 st.set_page_config(layout="wide")
@@ -68,10 +68,10 @@ with st.container():
 with st.container():
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("### Word Cloud (ASEM Logo Masked)")
-        fig_wc = draw_word_cloud(bows)
-        st.pyplot(fig_wc, use_container_width=True)
-
+    with col1:
+        st.subheader("StopWords Cloud, ASEM")
+        draw_word_cloud(bows)
+    
     with col2:
         st.subheader("Plot 4 or Input 4")
 
