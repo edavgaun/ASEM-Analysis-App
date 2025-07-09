@@ -6,11 +6,22 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-#st.markdown("""
-#<style>
-#.block-container { padding-top: 1rem; }
-#</style>
-#""", unsafe_allow_html=True)
+# 🔧 Remove top whitespace and adjust layout
+st.markdown("""
+    <style>
+        /* Remove default padding */
+        .block-container {
+            padding-top: 0rem;
+            padding-bottom: 1rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        /* Optional: tweak header spacing */
+        .css-18e3th9 {
+            padding-top: 0rem !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Title
 st.title("ASEM 2025 Dashboard Explorer")
