@@ -69,8 +69,16 @@ with st.container():
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("StopWords Cloud, ASEM")
-        st.write("Total words across all years in bows:", sum(len(b) for b in bows.values()))
+        st.write("Total different words used across all years in bows:", sum(len(b) for b in bows.values()))
+        # Count total matching stopwords in bows
+        stopword_hits = sum(
+            sum(1 for word in bows[year] if word in own_stopwords)
+            for year in bows)
+        # Optionally, total unique stopwords found:
+        unique_stopwords_found = set(
+            word for year in bows for word in bows[year] if word in own_stopwords)
 
+        st.write(f"✨ Unique stopwords matched: {len(unique_stopwords_found)}")
         draw_word_cloud(bows)
     
     with col2:
