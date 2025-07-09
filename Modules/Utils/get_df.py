@@ -1,12 +1,22 @@
+import pandas as pd
+
 def get_df(file_year):
-  base_url = "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/refs/heads/main/Data/CP_{}.csv"
-  file_name=base_url.format(file_year)
-  df = pd.read_csv(file_name, index_col="Unnamed: 0")
-  if file_year!=2015:
-    df["Paper"] = df["Title"].str.lower()+ ", " \
-                   + df["KeyWords"].str.lower() + ", " \
-                   + df["Abstract"].str.lower()+", "
-  else:
-    df["Paper"] = df["Title"].str.lower()+ ", " \
-                + df["Abstract"].str.lower()+", "
-  return df
+    """
+    Loads a CSV for the given year from GitHub and builds a 'Paper' column.
+    """
+    url = f"https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/Data/CP_{file_year}.csv"
+    df = pd.read_csv(url, index_col="Unnamed: 0")
+
+    if file_year != 2015:
+        df["Paper"] = (
+            df["Title"].str.lower().fillna("") + ", " +
+            df["KeyWords"].str.lower().fillna("") + ", " +
+            df["Abstract"].str.lower().fillna("")
+        )
+    else:
+        df["Paper"] = (
+            df["Title"].str.lower().fillna("") + ", " +
+            df["Abstract"].str.lower().fillna("")
+        )
+
+    return df
