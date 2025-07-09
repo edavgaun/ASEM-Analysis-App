@@ -1,6 +1,6 @@
 # ASEM Analysis App
 
-<img src="https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/refs/heads/main/assets/ASEM_logo_web_400px.png" width=400>
+<img src="https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/refs/heads/main/assets/ASEM_logo_web_400px.png" width=300>
 
 This repository was created to support the analysis of 10 years of data from the ASEM conference proceedings (2015–2024).
 
