@@ -46,8 +46,8 @@ with st.container():
 
     # --- Columns 2–4: Output Tables ---
     with col2:
-    st.subheader("Titles and KeyWords")
-    st.dataframe(df_slice[["Title", "KeyWords"]], use_container_width=True)
+        st.subheader("Titles and KeyWords")
+        st.dataframe(df_slice[["Title", "KeyWords"]], use_container_width=True)
 
     with col3:
         st.subheader("Abstracts")
@@ -56,6 +56,7 @@ with st.container():
     with col4:
         st.subheader("Paper Text Preview")
         st.dataframe(df_slice[["Paper"]], use_container_width=True)
+
 
 
 # Row 2
