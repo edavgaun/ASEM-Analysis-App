@@ -69,6 +69,8 @@ with st.container():
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("StopWords Cloud, ASEM")
+        st.write("Total words across all years in bows:", sum(len(b) for b in bows.values()))
+
         draw_word_cloud(bows)
     
     with col2:
