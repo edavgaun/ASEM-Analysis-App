@@ -1,8 +1,8 @@
 import streamlit as st
 from Modules.Utils.get_df import get_df
-from Modules.Utils.get_corpus import get_corpus
-from Modules.Utils.get_tokens import get_tokens
-from Modules.Utils.get_word_frq import get_word_frq
+#from Modules.Utils.get_corpus import get_corpus
+#from Modules.Utils.get_tokens import get_tokens
+#from Modules.Utils.get_word_frq import get_word_frq
 
 
 st.set_page_config(layout="wide")
