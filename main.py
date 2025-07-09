@@ -3,13 +3,21 @@ from Modules.Utils.get_df import get_df
 from Modules.Utils.get_word_frq import get_word_frq
 from wordcloud import WordCloud
 from Modules.Utils.get_tokens import get_tokens
+
 import spacy
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    import subprocess
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
-    nlp = spacy.load("en_core_web_sm")
+import importlib.util
+import subprocess
+
+def ensure_spacy_model(model_name="en_core_web_sm"):
+    try:
+        return spacy.load(model_name)
+    except OSError:
+        # Try to download if not already installed
+        subprocess.run(["python", "-m", "spacy", "download", model_name])
+        return spacy.load(model_name)
+
+nlp = ensure_spacy_model()
+
 
 st.set_page_config(layout="wide")
 
