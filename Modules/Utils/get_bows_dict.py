@@ -9,12 +9,21 @@ def get_bows_dict(start=2015, end=2024):
 
     for year in range(start, end + 1):
         try:
-            dfs[year] = get_df(year)
-            corpuses[year] = get_corpus(dfs[year], year)
-            tokenses[year] = get_tokens(corpuses[year])
-            bows[year] = get_bow(tokenses[year])
-            bow_dfs[year] = get_bow_df(bows[year])
+            df = get_df(year)
+            corpus = get_corpus(df, year)
+            tokens = get_tokens(corpus)
+            bow = get_bow(tokens)
+            bow_df = get_bow_df(bow)
+    
+            dfs[year] = df
+            corpuses[year] = corpus
+            tokenses[year] = tokens
+            bows[year] = bow
+            bow_dfs[year] = bow_df
+    
         except Exception as e:
+            print(f"❌ Failed for year {year}: {e}")
             continue
+
 
     return dfs, corpuses, tokenses, bows, bow_dfs
