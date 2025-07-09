@@ -68,7 +68,7 @@ with st.container():
 
 # Row 2
 with st.container():
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1, 5])
     with col1:
         st.subheader("StopWords Cloud, ASEM")
         st.write("Total different words used across all years in bows:", sum(len(b) for b in bows.values()))
