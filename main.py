@@ -2,10 +2,14 @@ import streamlit as st
 from Modules.Utils.get_df import get_df
 from Modules.Utils.get_word_frq import get_word_frq
 from wordcloud import WordCloud
-#from Modules.Utils.get_corpus import get_corpus
-#from Modules.Utils.get_tokens import get_tokens
-#from Modules.Utils.get_word_frq import get_word_frq
-
+from Modules.Utils.get_tokens import get_tokens
+import spacy
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    import subprocess
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 st.set_page_config(layout="wide")
 
