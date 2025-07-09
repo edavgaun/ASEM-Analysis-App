@@ -1,27 +1,18 @@
-def draw_word_cloud(data_year, num_word=10):
-  import imageio.v2 as imageio
-  from io import BytesIO
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
-  logo_url = "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/assets/asem_logo.png"
-  df=get_df(data_year)
-  corpus=get_corpus(df, data_year)
-  tokens=get_tokens(corpus)
-  bow=get_bow(tokens)
-  bow_df=get_bow_df(bow)
-  own_stopwords=get_dict()
-  word_freq = dict(zip(bow_df[bow_df.Word.isin(own_stopwords)]['Word'],
-                     bow_df[bow_df.Word.isin(own_stopwords)]['frq']))
+def draw_word_cloud(freq_dict, width=900, height=400, max_words=100, background_color='white'):
+    """
+    Draws and returns a WordCloud matplotlib figure from a frequency dictionary.
+    """
+    wc = WordCloud(
+        width=width,
+        height=height,
+        background_color=background_color,
+        max_words=max_words
+    ).generate_from_frequencies(freq_dict)
 
-  response = requests.get(logo_url)
-  mask = imageio.imread(BytesIO(response.content))
-  mask = np.where(mask > 128, 255, 0)  # Apply a threshold to get a binary mask
-
-  wordcloud = WordCloud(width=1000, height=700, mask=mask,
-                        background_color='white',contour_width=0.5, contour_color='Blue'
-                        ).generate_from_frequencies(word_freq)
-
-  # Plot the word cloud
-  plt.figure(figsize=(10, 5))
-  plt.imshow(wordcloud, interpolation='bilinear')
-  plt.axis('off')  # Turn off axis labels
-  plt.show()
+    fig, ax = plt.subplots(figsize=(width/100, height/100))
+    ax.imshow(wc, interpolation="bilinear")
+    ax.axis("off")
+    return fig
