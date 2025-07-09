@@ -57,5 +57,5 @@ def draw_word_cloud(bows):
     # Show in Streamlit
     buf = BytesIO()
     plt.savefig(buf, format="png", dpi=200, bbox_inches="tight", pad_inches=0.1)
-    st.image(buf.getvalue(), use_container_width=False, width=600)
+    st.image(buf.getvalue(), use_container_width=False, width=400)
 
