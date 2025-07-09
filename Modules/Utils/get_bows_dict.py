@@ -9,6 +9,8 @@ def get_bows_dict(start=2015, end=2024):
 
     for year in range(start, end + 1):
         try:
+            print(f"{year}: corpus length = {len(corpus)}, tokens = {len(tokens)}")
+
             df = get_df(year)
             corpus = get_corpus(df, year)
             tokens = get_tokens(corpus)
