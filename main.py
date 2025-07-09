@@ -8,11 +8,15 @@ import pandas as pd
 from Modules.Utils.get_df import get_df
 from Modules.Utils.get_word_frq import get_word_frq
 from Modules.Utils.get_tokens import get_tokens
+from Modules.Utils.get_bows_dict import get_bows_dict
 
 # Charts imports
 from Modules.Chart.draw_word_cloud import draw_word_cloud
 
+# Variable set up
+_, _, _, bows, _ = get_bows_dict()
 
+# Main App
 st.set_page_config(layout="wide")
 
 # 🔧 Remove top whitespace and adjust layout
@@ -64,17 +68,8 @@ with st.container():
 with st.container():
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("### Word Cloud of Selected Papers")
-    
-        combined_text = " ".join(df_slice["Paper"].dropna().tolist())
-        
-        # Tokenize & get frequencies
-        tokens = get_tokens(combined_text)
-        word_freq = get_word_frq(tokens)
-        
-        st.write("Top words:", list(word_freq.items())[:5])
-
-        fig_wc = draw_word_cloud(word_freq, max_words=100)
+        st.markdown("### Word Cloud (ASEM Logo Masked)")
+        fig_wc = draw_word_cloud(bows)
         st.pyplot(fig_wc, use_container_width=True)
 
     with col2:
