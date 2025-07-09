@@ -2,7 +2,7 @@ import spacy
 
 nlp = spacy.load("en_core_web_sm")
 
-def get_tokens(corpus, nlp_model=nlp):
+def get_tokens(corpus, nlp_model):
     """
     Tokenizes the cleaned corpus using spaCy.
     """
