@@ -5,16 +5,16 @@ import streamlit as st
 #from city_map import render_city_map
 
 # Set layout first
-if "initialized" not in st.session_state:
-    st.set_page_config(layout="wide")
-    st.session_state["initialized"] = True
+#if "initialized" not in st.session_state:
+#    st.set_page_config(layout="wide")
+#    st.session_state["initialized"] = True
 
 # Optional: Remove default top padding
-st.markdown("""
-<style>
-.block-container { padding-top: 1rem; }
-</style>
-""", unsafe_allow_html=True)
+#st.markdown("""
+#<style>
+#.block-container { padding-top: 1rem; }
+#</style>
+#""", unsafe_allow_html=True)
 
 # Title
 st.title("ASEM 2025 Dashboard Explorer")
