@@ -4,6 +4,9 @@ from Modules.Utils.get_word_frq import get_word_frq
 from wordcloud import WordCloud
 from Modules.Utils.get_tokens import get_tokens
 
+from Modules.Chart.draw_word_cloud import draw_word_cloud
+
+
 st.set_page_config(layout="wide")
 
 # 🔧 Remove top whitespace and adjust layout
