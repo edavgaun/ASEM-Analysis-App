@@ -1,8 +1,9 @@
 import streamlit as st
-#from eda_dashboard import render_eda
-#from lda_viewer import render_lda
-#from load_data import get_html_file_map
-#from city_map import render_city_map
+from Modules.Utils.get_df import get_df
+from Modules.Utils.get_corpus import get_corpus
+from Modules.Utils.get_tokens import get_tokens
+from Modules.Utils.get_word_frq import get_word_frq
+
 
 st.set_page_config(layout="wide")
 
