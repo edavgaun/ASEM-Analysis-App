@@ -1,9 +1,15 @@
+# Libraries
 import streamlit as st
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+# Utils imports
 from Modules.Utils.get_df import get_df
 from Modules.Utils.get_word_frq import get_word_frq
-from wordcloud import WordCloud
 from Modules.Utils.get_tokens import get_tokens
 
+# Charts imports
 from Modules.Chart.draw_word_cloud import draw_word_cloud
 
 
