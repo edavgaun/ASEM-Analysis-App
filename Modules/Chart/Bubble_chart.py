@@ -1,49 +1,47 @@
-import numpy as np
-import requests
-from PIL import Image
-from io import BytesIO
 import matplotlib.pyplot as plt
-from wordcloud import WordCloud
+import seaborn as sns
 import streamlit as st
-from Modules.Utils.get_dict import get_dict
+from Modules.Utils.get_long_df import get_long_df
+from Modules.Utils.get_wide_df import get_wide_df
 
-def draw_word_cloud(bows):
-    logo_url = "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/assets/asem_logo.png"
-    own_stopwords = get_dict()
-    word_freq = {}
+def Bubble_chart(top_words):
+    df_long = get_long_df()
+    data_full = get_wide_df()
 
-    for word in own_stopwords:
-        if len(word) > 2:
-            for y in range(2015, 2025):
-                try:
-                    word_freq[word] += bows[y][word]
-                except:
-                    try:
-                        word_freq[word] = bows[y][word]
-                    except:
-                        continue
-
-    # Load and process the mask image
     try:
-        response = requests.get(logo_url)
-        image = Image.open(BytesIO(response.content)).convert("L")  # grayscale
-        mask = np.array(image)
-        mask = np.where(mask > 128, 255, 0)  # binary mask
-    except Exception:
-        st.warning("⚠️ Failed to load ASEM logo mask. Using blank mask.")
-        mask = None
+        top_words = list(top_words)
+        top_words.sort()
+        df_plot = df_long[df_long.Word.isin(top_words)]
 
-    wordcloud = WordCloud(
-        width=1000,
-        height=700,
-        mask=mask,
-        background_color='white',
-        contour_width=0.5,
-        contour_color='Blue'
-    ).generate_from_frequencies(word_freq)
+        fig, axs = plt.subplots(figsize=(10, max(2, len(top_words) * 0.9)))
 
-    # Plot and show in Streamlit
-    plt.figure(figsize=(10, 5))
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis('off')
-    st.pyplot(plt.gcf())
+        sns.scatterplot(
+            data=df_plot,
+            x='year', y='Word', size='frq', hue='frq',
+            palette='Blues', sizes=(100, 3000),
+            edgecolor='k', ax=axs,
+            legend=False
+        )
+
+        # Add bubble value annotations
+        for index, row in df_plot.iterrows():
+            txt_color = "black"
+            txt_weight = None
+            if row['frq'] > int(df_plot.frq.max() * 3 / 5):
+                txt_color = "white"
+                txt_weight = "bold"
+
+            axs.text(row['year'], row['Word'], str(int(row['frq'])),
+                     ha='center', va='center', fontsize=8, alpha=0.7,
+                     color=txt_color, fontweight=txt_weight)
+
+        axs.set_ylim(-0.6, len(top_words) - 0.4)
+        axs.grid(axis='both', linestyle='--', alpha=0.4)
+        axs.spines['top'].set_visible(False)
+        axs.spines['right'].set_visible(False)
+
+        plt.tight_layout()
+        st.pyplot(fig)
+
+    except Exception as e:
+        st.error(f"⚠️ Failed to draw bubble chart: {e}")
