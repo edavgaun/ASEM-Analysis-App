@@ -24,7 +24,6 @@ You can explore the live app here:
 - `/assets` – Images and logos used for visualizations
 - `app.ipynb` – Main Jupyter Notebook used to build the application
 - `requirements.txt` – Python dependencies
-- `render.yaml` – Configuration file for deployment on Render
 
 ---
 
@@ -34,8 +33,7 @@ You can explore the live app here:
 - Pandas, Numpy, Matplotlib, Seaborn
 - Plotly, ipywidgets, WordCloud, NetworkX
 - Scikit-learn, Yellowbrick
-- Voila (for dashboard-style deployment)
-- Hosted on Render.com
+- Streamlit for rendering
 
 ---
 
