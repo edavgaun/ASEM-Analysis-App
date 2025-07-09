@@ -1,10 +1,10 @@
-def get_tokens(corpus, nlp_model):
+import re
+
+def get_tokens(corpus):
     """
-    Tokenizes the cleaned corpus using a provided spaCy language model.
+    Tokenizes the corpus into lowercase words using regex.
+    Removes punctuation and non-alphabetic tokens.
     """
-    concepts = [
-        t.replace("--", "-").replace("-", " ")
-        for t in set(corpus.split(", ")) if len(t) >= 2
-    ]
-    doc = nlp_model(", ".join(concepts))
-    return doc
+    # Split on non-alphabetic chars, keep words only
+    tokens = re.findall(r'\\b[a-zA-Z]{2,}\\b', corpus.lower())
+    return tokens
