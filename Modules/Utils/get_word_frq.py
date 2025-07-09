@@ -1,2 +1,13 @@
-def get_word_frq(bow_df, Top_KW):
-  return bow_df[bow_df.Word.isin(Top_KW)].set_index("Word").to_dict()["frq"]
+from collections import Counter
+
+def get_word_frq(tokens):
+    """
+    Returns word frequency dictionary from a spaCy Doc object.
+    Filters out stop words and non-alphabetic tokens.
+    """
+    words = [
+        token.text.lower()
+        for token in tokens
+        if token.is_alpha and not token.is_stop
+    ]
+    return Counter(words)
