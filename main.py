@@ -5,19 +5,7 @@ from wordcloud import WordCloud
 from Modules.Utils.get_tokens import get_tokens
 
 import spacy
-import importlib.util
-import subprocess
-
-def ensure_spacy_model(model_name="en_core_web_sm"):
-    try:
-        return spacy.load(model_name)
-    except OSError:
-        # Try to download if not already installed
-        subprocess.run(["python", "-m", "spacy", "download", model_name])
-        return spacy.load(model_name)
-
-nlp = ensure_spacy_model()
-
+nlp = spacy.load("en_core_web_sm")  # This will now work thanks to requirements.txt
 
 st.set_page_config(layout="wide")
 
