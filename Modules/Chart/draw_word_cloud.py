@@ -50,7 +50,7 @@ def draw_word_cloud(bows):
     ).generate_from_frequencies(word_freq)
 
     # Plot
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots(figsize=(5, 2.5))
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.axis('off')
 
