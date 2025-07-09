@@ -1,5 +1,3 @@
-import pandas as pd
-
 def get_df(file_year):
     """
     Loads a CSV for the given year from GitHub and builds a 'Paper' column.
