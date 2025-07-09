@@ -65,9 +65,12 @@ with st.container():
         # Tokenize & get frequencies
         tokens = get_tokens(combined_text)
         word_freq = get_word_frq(tokens)
-    
+        
+        st.write("Top words:", list(word_freq.items())[:5])
+
         fig_wc = draw_word_cloud(word_freq, max_words=100)
-        st.pyplot(fig_wc)
+        st.pyplot(fig_wc, use_container_width=True)
+
     with col2:
         st.subheader("Plot 4 or Input 4")
 
