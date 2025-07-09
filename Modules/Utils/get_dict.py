@@ -1,3 +1,5 @@
+import requests
+
 def get_dict():
   url="https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/Data/own_stopwords.txt"
   response = requests.get(url)
