@@ -1,8 +1,8 @@
 import streamlit as st
 from Modules.Utils.get_df import get_df
-#from Modules.Utils.get_word_frq import get_word_frq
-#from wordcloud import WordCloud
-#from Modules.Utils.get_tokens import get_tokens
+from Modules.Utils.get_word_frq import get_word_frq
+from wordcloud import WordCloud
+from Modules.Utils.get_tokens import get_tokens
 
 st.set_page_config(layout="wide")
 
@@ -57,14 +57,14 @@ with st.container():
     with col1:
         st.markdown("### Word Cloud of Selected Papers")
     
-        #combined_text = " ".join(df_slice["Paper"].dropna().tolist())
+        combined_text = " ".join(df_slice["Paper"].dropna().tolist())
         
         # Tokenize & get frequencies
-        #tokens = get_tokens(combined_text)
-        #word_freq = get_word_frq(tokens)
+        tokens = get_tokens(combined_text)
+        word_freq = get_word_frq(tokens)
     
-        #fig_wc = draw_word_cloud(word_freq, max_words=100)
-        #st.pyplot(fig_wc)
+        fig_wc = draw_word_cloud(word_freq, max_words=100)
+        st.pyplot(fig_wc)
     with col2:
         st.subheader("Plot 4 or Input 4")
 
