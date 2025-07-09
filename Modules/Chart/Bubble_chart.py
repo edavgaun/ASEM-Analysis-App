@@ -1,7 +1,10 @@
+import numpy as np
 import requests
 from PIL import Image
 from io import BytesIO
+import matplotlib.pyplot as plt
 from wordcloud import WordCloud
+import streamlit as st
 from Modules.Utils.get_dict import get_dict
 
 def draw_word_cloud(bows):
