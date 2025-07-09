@@ -9,6 +9,8 @@ from Modules.Utils.get_df import get_df
 from Modules.Utils.get_word_frq import get_word_frq
 from Modules.Utils.get_tokens import get_tokens
 from Modules.Utils.get_bows_dict import get_bows_dict
+from Modules.Utils.get_dict import get_dict
+own_stopwords = set(get_dict())
 
 # Charts imports
 from Modules.Chart.draw_word_cloud import draw_word_cloud
