@@ -4,9 +4,6 @@ from Modules.Utils.get_word_frq import get_word_frq
 from wordcloud import WordCloud
 from Modules.Utils.get_tokens import get_tokens
 
-import spacy
-nlp = spacy.load("en_core_web_sm")  # This will now work thanks to requirements.txt
-
 st.set_page_config(layout="wide")
 
 # 🔧 Remove top whitespace and adjust layout
@@ -61,7 +58,9 @@ with st.container():
         st.markdown("### Word Cloud of Selected Papers")
     
         combined_text = " ".join(df_slice["Paper"].dropna().tolist())
-        tokens = get_tokens(combined_text, nlp_model=nlp)
+        
+        # Tokenize & get frequencies
+        tokens = get_tokens(combined_text)
         word_freq = get_word_frq(tokens)
     
         fig_wc = draw_word_cloud(word_freq, max_words=100)
