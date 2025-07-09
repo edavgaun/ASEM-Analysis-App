@@ -14,7 +14,6 @@ def get_bows_dict(start=2015, end=2024):
             df = get_df(year)
             corpus = get_corpus(df, year)
             tokens = get_tokens(corpus)
-            st.write(f"{year}: corpus length = {len(corpus)}, tokens = {len(tokens)}")
 
             bow = get_bow(tokens)
             bow_df = get_bow_df(bow)
