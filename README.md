@@ -1,5 +1,7 @@
 # ASEM Analysis App
 
+<img src="" width=400>
+
 This repository was created to support the analysis of 10 years of data from the ASEM conference proceedings (2015–2024).
 
 The project includes:
