@@ -26,15 +26,23 @@ st.markdown("""
 # Title
 st.title("ASEM 2025 Dashboard Explorer")
 
-# Row 1
 with st.container():
-    col1, col2 = st.columns(2)
+    # Create 4 columns: col1 is narrow (e.g. for controls), col2–col4 are wider (e.g. for plots)
+    col1, col2, col3, col4 = st.columns([1, 2, 2, 2])
+
     with col1:
-        st.subheader("Plot 1 or Input 1")
-        # Add any component here: e.g., st.plotly_chart(fig1)
+        st.subheader("Inputs")
+        st.selectbox("Choose cluster method", ["KMeans", "DBSCAN", "Agglomerative"])
+        st.slider("Top N Words", 5, 50, 20)
+        st.text_input("Keyword")
+
     with col2:
-        st.subheader("Plot 2 or Input 2")
-        # e.g., st.write(df.head())
+        st.subheader("Plot A")
+        # st.plotly_chart(fig1, use_container_width=True)
+
+    with col3:
+        st.subheader("Plot B)
+
 
 # Row 2
 with st.container():
