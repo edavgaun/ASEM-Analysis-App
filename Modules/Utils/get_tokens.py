@@ -1,10 +1,6 @@
-import spacy
-
-nlp = spacy.load("en_core_web_sm")
-
 def get_tokens(corpus, nlp_model):
     """
-    Tokenizes the cleaned corpus using spaCy.
+    Tokenizes the cleaned corpus using a provided spaCy language model.
     """
     concepts = [
         t.replace("--", "-").replace("-", " ")
