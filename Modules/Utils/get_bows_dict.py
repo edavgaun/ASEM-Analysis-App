@@ -3,11 +3,7 @@ from Modules.Utils.get_corpus import get_corpus
 from Modules.Utils.get_tokens import get_tokens
 from Modules.Utils.get_bow import get_bow
 from Modules.Utils.get_bow_df import get_bow_df
-from Modules.Utils.get_dict import get_dict
 import streamlit as st
-
-# Load your stopwords once
-own_stopwords = set(get_dict())
 
 def get_bows_dict(start=2015, end=2024):
     dfs, corpuses, tokenses, bows, bow_dfs = {}, {}, {}, {}, {}
@@ -20,10 +16,6 @@ def get_bows_dict(start=2015, end=2024):
             tokens = get_tokens(corpus)
 
             bow = get_bow(tokens)
-
-            # ❌ Remove stopwords from bow
-            bow = {word: freq for word, freq in bow.items() if word not in own_stopwords}
-
             bow_df = get_bow_df(bow)
 
             dfs[year] = df
