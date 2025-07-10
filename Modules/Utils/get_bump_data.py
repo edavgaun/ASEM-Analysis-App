@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from Modules.Utils.get_dict import get_dict
 
-
 def get_bump_chart_data(bow_dfs, k=12):
     filter_words = get_dict() + ["  ", "review"]
     table = pd.DataFrame(np.zeros((10, 1 + k)), columns=["Year"] + ["Top W" + str(n) for n in range(1, 1 + k)])
