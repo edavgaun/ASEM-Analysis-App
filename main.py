@@ -109,9 +109,9 @@ with st.container():
     col1, col_rest = st.columns([1, 5])
     with col1:
         st.subheader("Network Parameters")
-        year = st.selectbox("Select Year", list(range(2015, 2025)), key="net_year")
-        num_words = st.slider("Top N Words", 5, 50, 20, step=1, key="net_topn")
-        seed = st.slider("Random Seed", 0, 100, 42, step=1, key="net_seed")
+        year = st.selectbox("Select Year", list(range(2015, 2025)), key="network_year")
+        num_words = st.slider("Top N Words", 5, 100, 20, step=5, key="network_topn")
+        seed = st.slider("Random Seed", 0, 100, 42, step=1, key="seed")
 
     with col_rest:
         st.subheader("Keyword Co-occurrence Network")
