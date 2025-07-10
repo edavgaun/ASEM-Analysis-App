@@ -148,13 +148,13 @@ with st.container():
     # Now that inputs exist, safely draw charts
     with col1:
         st.subheader(f"Radar Chart – {year1}")
-        fig1, ax1 = plt.subplots(figsize=(6, 5))
-        radar_chart(dfs, bow_dfs, year1, radar_word, topN_words, ax1, color="blue")
+        fig1, ax1 = plt.subplots(figsize=(6, 5), subplot_kw=dict(polar=True))
+        radar_chart(dfs, bow_dfs, year1, radar_word.lower(), topN_words, ax1, color="blue")
         st.pyplot(fig1)
 
     with col2:
         st.subheader(f"Radar Chart – {year2}")
-        fig2, ax2 = plt.subplots(figsize=(6, 5))
-        radar_chart(dfs, bow_dfs, year2, radar_word, topN_words, ax2, color="green")
+        fig2, ax2 = plt.subplots(figsize=(6, 5), subplot_kw=dict(polar=True))
+        radar_chart(dfs, bow_dfs, year2, radar_word.lower(), topN_words, ax2, color="green")
         st.pyplot(fig2)
 
