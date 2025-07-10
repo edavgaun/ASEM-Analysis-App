@@ -1,30 +1,30 @@
 import pandas as pd
 import numpy as np
-from Modules.Utils.get_dict import get_dict
 from nltk.corpus import stopwords
 import nltk
-nltk.download('stopwords')  # Optional: only needed once
-
+nltk.download('stopwords', quiet=True)
+from Modules.Utils.get_dict import get_dict
 
 def get_bump_data(bow_dfs, k=12):
     filter_words = stopwords.words("english") + get_dict() + ["  ", "review"]
-    table = pd.DataFrame(np.zeros((10, 1 + k), dtype=object), columns=["Year"] + [f"Top W{n}" for n in range(1, k + 1)])
+    table = pd.DataFrame(np.zeros((10, 1 + k), dtype=object),
+                         columns=["Year"] + [f"Top W{n}" for n in range(1, k + 1)])
 
     for row in range(10):
         year = 2015 + row
-        top_words = bow_dfs[year][~bow_dfs[year].Word.isin(filter_words)].head(k).Word.tolist()
-        topW = [f"({i}), {str(t)}" for i, t in enumerate(top_words)]
+        df = bow_dfs[year]
+        filtered = df[~df.Word.isin(filter_words)].head(k).Word
+        topW = [f"({i}), {str(t)}" for i, t in zip(filtered.index.tolist(), filtered.values.tolist())]
         table.at[row, "Year"] = year
         for col, word in enumerate(topW):
             table.iat[row, col + 1] = word
 
     table["Year"] = table["Year"].astype(int)
 
-    bump_words = {}
-    for entry in table.iloc[:, 1:].values.flatten():
-        if pd.notna(entry):
-            _, word = entry.split(", ")
-            bump_words.setdefault(word, [])
+    bump_words = {
+        word: [] for word in
+        set(w.split(", ")[1] for w in table.iloc[:, 1:].values.flatten() if pd.notna(w))
+    }
 
     for _, row in table.iterrows():
         words_present = {}
