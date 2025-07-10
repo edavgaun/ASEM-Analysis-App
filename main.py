@@ -4,6 +4,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+@st.cache_resource
+def load_nltk_data():
+    import nltk
+    nltk.download('wordnet')
+    nltk.download('omw-1.4')
+
+load_nltk_data()
+
 # Utils imports
 from Modules.Utils.get_df import get_df
 from Modules.Utils.get_word_frq import get_word_frq
