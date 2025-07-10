@@ -9,7 +9,7 @@ from Modules.Utils.get_bump_data import get_bump_chart_data
 def draw_bump_chart(bow_dfs):
     table = get_bump_chart_data(bow_dfs)
     bump_words = {z: [] for z in set([w.split(", ")[1] for y in table.iloc[:, 1:].values for w in y])}
-    
+
     for i, row in table.iterrows():
         words_present = {}
         for cell in row[1:]:
@@ -22,26 +22,26 @@ def draw_bump_chart(bow_dfs):
     years = list(range(2015, 2025))
     bump_df = pd.DataFrame(bump_words, index=years)
 
-    fz = 12
+    fz = 11
     topics = ["sustainability", "leadership", "energy", "ai", "technology", "team"]
     colors = sns.color_palette("tab10", n_colors=10)
     fig, axs = plt.subplots(figsize=(12, 6))
 
     k = 0
     for column in bump_df.columns:
-        color = "Gray"
-        alfa = 0.25
+        color = "gray"
+        alpha = 0.25
         marker = "o"
         if column in topics:
             color = colors[k]
             k += 1
-            alfa = 1
+            alpha = 1
             marker = "^"
-            axs.plot(bump_df.index, bump_df[column], marker=marker, alpha=alfa,
-                     markersize=12, label=column, color=color, mec="Black")
+            axs.plot(bump_df.index, bump_df[column], marker=marker, alpha=alpha,
+                     markersize=10, label=column, color=color, mec="black")
         else:
-            axs.plot(bump_df.index, bump_df[column], marker=marker, alpha=alfa,
-                     markersize=12, color=color, mec="Black")
+            axs.plot(bump_df.index, bump_df[column], marker=marker, alpha=alpha,
+                     markersize=10, color=color, mec="black")
 
     c = 0
     for year in years:
@@ -51,21 +51,21 @@ def draw_bump_chart(bow_dfs):
                 x = 0.25 + year - 1
                 y = int(serie.iloc[n, 0][1:-1]) + 1.25
                 text = serie.iloc[n, 1]
-                axs.annotate(text, xy=(x, y), ha="left", color="Gray", fontsize=fz - 3)
+                axs.annotate(text, xy=(x, y), ha="left", color="gray", fontsize=fz - 2)
                 axs.quiver(x + 0.5, y - 0.4, 0.25, 0, color="gray", scale_units='xy', angles='xy', scale=1.2, width=0.002)
             c += 2
 
-    axs.set_xticks(bump_df.index, labels=years, fontsize=fz)
-    axs.set_yticks(range(0, int(np.nanmax(bump_df.values)) + 2, 5),
-                   labels=range(0, int(np.nanmax(bump_df.values)) + 2, 5),
-                   fontsize=fz)
+    axs.set_xticks(bump_df.index)
+    axs.set_xticklabels(years, fontsize=fz)
+    axs.set_yticks(range(0, int(np.nanmax(bump_df.values)) + 2, 5))
+    axs.set_yticklabels(range(0, int(np.nanmax(bump_df.values)) + 2, 5), fontsize=fz)
     axs.set_ylim(0, 45)
     axs.set_xlim(2014, 2024.5)
     axs.invert_yaxis()
-    axs.set_xlabel("Year", fontsize=fz + 4)
-    axs.set_ylabel("Ranking", fontsize=fz + 4)
-    axs.grid(which='major', linestyle='--', linewidth='0.5', color='Black')
-    axs.grid(which='minor', linestyle=':', linewidth='0.5', color='Gray')
-    plt.legend(title="Keyword", bbox_to_anchor=(1.01, 1), loc='upper left', fontsize=fz)
+    axs.set_xlabel("Year", fontsize=fz + 2)
+    axs.set_ylabel("Ranking", fontsize=fz + 2)
+    axs.grid(which='major', linestyle='--', linewidth='0.5', color='black')
+    axs.grid(which='minor', linestyle=':', linewidth='0.5', color='gray')
+    axs.legend(title="Keyword", bbox_to_anchor=(1.05, 0.5), loc='center left', fontsize=fz)
     plt.tight_layout()
     st.pyplot(fig)
