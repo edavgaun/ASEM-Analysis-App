@@ -23,6 +23,8 @@ own_stopwords = set(get_dict())
 # Charts imports
 from Modules.Chart.draw_word_cloud import draw_word_cloud
 from Modules.Chart.draw_Network import draw_Network
+from Modules.Chart.radar_chart import radar_chart
+
 
 # Variable set up
 dfs, corpuses, tokenses, bows, bow_dfs = get_bows_dict()
