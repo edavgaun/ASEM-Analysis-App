@@ -14,6 +14,7 @@ own_stopwords = set(get_dict())
 
 # Charts imports
 from Modules.Chart.draw_word_cloud import draw_word_cloud
+from Modules.Chart.draw_Network import draw_Network
 
 # Variable set up
 dfs, corpuses, tokenses, bows, bow_dfs = get_bows_dict()
@@ -105,11 +106,16 @@ with st.container():
 
 # Row 3
 with st.container():
-    col1, col2 = st.columns([1, 5])
+    col1, col_rest = st.columns([1, 5])
     with col1:
-        st.subheader("Plot 5 or Input 5")
-    with col2:
-        st.subheader("Plot 6 or Input 6")
+        st.subheader("Network Parameters")
+        year = st.selectbox("Select Year", list(range(2015, 2025)), key="net_year")
+        num_words = st.slider("Top N Words", 5, 50, 20, step=1, key="net_topn")
+        seed = st.slider("Random Seed", 0, 100, 42, step=1, key="net_seed")
+
+    with col_rest:
+        st.subheader("Keyword Co-occurrence Network")
+        draw_Network(data_year=year, num_word=num_words, random_loc=seed)
 
 # Row 4
 with st.container():
