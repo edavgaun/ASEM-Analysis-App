@@ -115,8 +115,11 @@ with st.container():
 
     with col_rest:
         st.subheader("Keyword Co-occurrence Network")
-        fig_net = draw_Network(data_year=year, num_word=num_words, random_loc=seed)
-        st.pyplot(fig_net, use_container_width=True)
+        try:
+            fig_net = draw_Network(data_year=year, num_word=num_words, random_loc=seed)
+            st.pyplot(fig_net, use_container_width=True)
+        except Exception as e:
+            st.error(f"❌ Failed to render network: {e}")
 
 # Row 4
 with st.container():
