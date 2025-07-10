@@ -53,4 +53,4 @@ def draw_Network(data_year, num_word=10, random_loc=0):
 
     plt.title(f"Word Co-occurrence Network, {data_year} (Semantic Clustering)", fontsize=14)
     plt.axis("off")
-    plt.show()
+    return fig
