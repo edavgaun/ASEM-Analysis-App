@@ -53,9 +53,8 @@ st.markdown("""
 
 # Title
 st.title("ASEM Dashboard Explorer, 2015-2024")
-st.caption("📘 Based on: Edgar Avalos-Gauna; Marya Cokar, & John Via III (2025), *10 Years of ASEM Proceedings*")
+st.caption("📘 Based on: Edgar Avalos-Gauna; (2025), *10 Years of ASEM Proceedings*")
 st.caption('Avalos-Gauna, E. (2025). ASEM uncovered: A decade of insights through natural language processing data analysis. In Proceedings of the ASEM 2025 International Annual Conference, Boise, ID, USA.')
-st.caption('Avalos-Gauna, E., Cokar, M., & Via, J. III. (2025). Engineering leadership in transition: A data-driven topic modeling analysis of ASEM proceedings. In Proceedings of the ASEM 2025 International Annual Conference, Boise, ID, USA.')
 
 # Row 1
 with st.container():
