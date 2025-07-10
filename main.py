@@ -24,6 +24,8 @@ own_stopwords = set(get_dict())
 from Modules.Chart.draw_word_cloud import draw_word_cloud
 from Modules.Chart.draw_Network import draw_Network
 from Modules.Chart.radar_chart import radar_chart
+from Modules.Chart.bump_chart import draw_bump_chart
+
 
 
 # Variable set up
@@ -157,4 +159,15 @@ with st.container():
         fig2, ax2 = plt.subplots(figsize=(6, 5), subplot_kw=dict(polar=True))
         radar_chart(dfs, bow_dfs, year2, radar_word.lower(), topN_words, ax2, color="green")
         st.pyplot(fig2)
+
+# Row 5 – Bump Chart
+with st.container():
+    col1, col_rest = st.columns([1, 5])
+
+    with col1:
+        st.subheader("Bump Chart")
+        st.caption("Top ranked words across the years\n– keywords in color were preselected")
+
+    with col_rest:
+        draw_bump_chart(bow_dfs)
 
