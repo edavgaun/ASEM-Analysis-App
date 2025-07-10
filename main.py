@@ -149,12 +149,12 @@ with st.container():
     with col1:
         st.subheader(f"Radar Chart – {year1}")
         fig1, ax1 = plt.subplots(figsize=(6, 5))
-        radar_chart(year1, radar_word, topN_words, ax1, color="blue")
+        radar_chart(dfs, bow_dfs, year1, radar_word, topN_words, ax1, color="blue")
         st.pyplot(fig1)
 
     with col2:
         st.subheader(f"Radar Chart – {year2}")
         fig2, ax2 = plt.subplots(figsize=(6, 5))
-        radar_chart(year2, radar_word, topN_words, ax2, color="green")
+        radar_chart(dfs, bow_dfs, year2, radar_word, topN_words, ax2, color="green")
         st.pyplot(fig2)
 
