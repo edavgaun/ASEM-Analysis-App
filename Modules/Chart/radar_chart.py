@@ -1,16 +1,21 @@
 import numpy as np
+import streamlit as st
 from Modules.Utils.get_topN_word_bow_df import get_topN_word_bow_df
 from Modules.Utils.get_word_frq import get_word_frq
 from Modules.Utils.get_combinations import get_combinations
 
+@st.cache_data(show_spinner=False)
+def get_radar_data(dfs, bow_dfs, year, topN_words):
+    df = dfs[year]
+    bow_df = bow_dfs[year]
+    KW = get_topN_word_bow_df(topN_words, bow_df)
+    word_frequencies = get_word_frq(bow_df, KW)
+    df_comb = get_combinations(df, bow_df, KW)
+    return df, bow_df, KW, word_frequencies, df_comb
 
 def radar_chart(dfs, bow_dfs, year, word, topN_Words, ax, color):
     word = word.lower()
-    df = dfs[year]
-    bow_df = bow_dfs[year]
-    KW = get_topN_word_bow_df(topN_Words, bow_df)
-    word_frequencies = get_word_frq(bow_df, KW)
-    df_comb = get_combinations(df, bow_df, KW)
+    df, bow_df, KW, word_frequencies, df_comb = get_radar_data(dfs, bow_dfs, year, topN_Words)
 
     if word not in bow_df.Word.values:
         ax.set_title(f"'{word}' not found in top {topN_Words}", fontsize=10)
