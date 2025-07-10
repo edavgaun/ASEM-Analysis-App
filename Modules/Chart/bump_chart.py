@@ -30,7 +30,7 @@ def draw_bump_chart(bow_dfs):
     c = 0
     for year in years:
         if year % 2 == 1:
-            serie = table.T.iloc[1:, c].apply(lambda x: x.split(", ") if pd.notna(x) else ["(0)", ""]).apply(pd.Series)
+            serie = table.T.iloc[1:, year - 2015].apply(lambda x: x.split(", ") if pd.notna(x) else ["(0)", ""]).apply(pd.Series)
             for n in range(len(serie)):
                 try:
                     x = 0.25 + year - 1
