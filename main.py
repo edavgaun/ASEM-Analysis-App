@@ -115,7 +115,8 @@ with st.container():
 
     with col_rest:
         st.subheader("Keyword Co-occurrence Network")
-        draw_Network(data_year=year, num_word=num_words, random_loc=seed)
+        fig_net = draw_Network(data_year=year, num_word=num_words, random_loc=seed)
+        st.pyplot(fig_net, use_container_width=True)
 
 # Row 4
 with st.container():
