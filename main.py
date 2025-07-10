@@ -131,28 +131,28 @@ with st.container():
         except Exception as e:
             st.error(f"❌ Failed to render network: {e}")
 
-# Row 4
+# Row 4 – Radar Charts
 with st.container():
-    cols = st.columns([2, 2, 1.5])
+    # First declare the inputs (RIGHT SIDE — col3)
+    col1, col2, col3 = st.columns([2, 2, 1.5])
 
-    # --- Column 1: Radar Chart for Year 1 ---
-    with cols[0]:
-        st.subheader(f"Radar Chart – {year1}")
-        fig1, ax1 = plt.subplots(figsize=(6, 5))
-        radar_chart(year1, radar_word, topN_words, ax1, color="blue")
-        st.pyplot(fig1)
-
-    # --- Column 2: Radar Chart for Year 2 ---
-    with cols[1]:
-        st.subheader(f"Radar Chart – {year2}")
-        fig2, ax2 = plt.subplots(figsize=(6, 5))
-        radar_chart(year2, radar_word, topN_words, ax2, color="green")
-        st.pyplot(fig2)
-
-    # --- Column 3: User Inputs ---
-    with cols[2]:
+    with col3:
         st.subheader("Radar Settings")
         radar_word = st.text_input("Keyword", value="Leadership", key="radar_word_input")
         topN_words = st.slider("Top N Words", min_value=5, max_value=100, step=5, value=15, key="topN_slider")
         year1 = st.selectbox("Select Year 1", list(range(2015, 2025)), index=2, key="radar_year1")
         year2 = st.selectbox("Select Year 2", list(range(2015, 2025)), index=3, key="radar_year2")
+
+    # Now that inputs exist, safely draw charts
+    with col1:
+        st.subheader(f"Radar Chart – {year1}")
+        fig1, ax1 = plt.subplots(figsize=(6, 5))
+        radar_chart(year1, radar_word, topN_words, ax1, color="blue")
+        st.pyplot(fig1)
+
+    with col2:
+        st.subheader(f"Radar Chart – {year2}")
+        fig2, ax2 = plt.subplots(figsize=(6, 5))
+        radar_chart(year2, radar_word, topN_words, ax2, color="green")
+        st.pyplot(fig2)
+
