@@ -6,7 +6,10 @@ from collections import Counter
 from Modules.Utils.get_topN_word_bow_df import get_topN_word_bow_df
 from Modules.Utils.get_word_frq import get_word_frq
 from Modules.Utils.get_combinations import get_combinations
-from Modules.Chart.row3_network_graph import dfs, corpuses, tokenses, bows, bow_dfs
+from Modules.Utils.get_bows_dict import get_bows_dict
+
+# Load global dicts
+dfs, corpuses, tokenses, bows, bow_dfs = get_bows_dict()
 
 def draw_Network(data_year, num_word=10, random_loc=0):
     df = dfs[data_year]
