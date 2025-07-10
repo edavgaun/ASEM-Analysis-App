@@ -4,7 +4,7 @@ from Modules.Utils.get_word_frq import get_word_frq
 from Modules.Utils.get_combinations import get_combinations
 
 
-def radar_chart(year, word, topN_Words, ax, color):
+def radar_chart(dfs, bow_dfs, year, word, topN_Words, ax, color):
     word = word.lower()
     df = dfs[year]
     bow_df = bow_dfs[year]
