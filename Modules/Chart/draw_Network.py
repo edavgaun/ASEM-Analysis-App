@@ -6,17 +6,23 @@ from collections import Counter
 from Modules.Utils.get_topN_word_bow_df import get_topN_word_bow_df
 from Modules.Utils.get_word_frq import get_word_frq
 from Modules.Utils.get_combinations import get_combinations
+from Modules.Utils.get_dict import get_dict
+from Modules.Utils.get_bow_df import get_bow_df
 from Modules.Utils.get_bows_dict import get_bows_dict
 
-# Load global dicts
+# Load precomputed dictionaries
 dfs, corpuses, tokenses, bows, bow_dfs = get_bows_dict()
+
 
 def draw_Network(data_year, num_word=10, random_loc=0):
     df = dfs[data_year]
     corpus = corpuses[data_year]
     tokens = tokenses[data_year]
-    bow = bows[data_year]
-    bow_df = bow_dfs[data_year]
+
+    # Filter stopwords only here
+    own_stopwords = set(get_dict())
+    bow = {word: freq for word, freq in bows[data_year].items() if word not in own_stopwords}
+    bow_df = get_bow_df(bow)
 
     KW = get_topN_word_bow_df(num_word, bow_df)
     word_frequencies = get_word_frq(bow_df, KW)
