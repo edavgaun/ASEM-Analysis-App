@@ -1,10 +1,13 @@
+from nltk.stem import PorterStemmer
+
+stemmer = PorterStemmer()
+
 def get_bow(tokens):
     bow_kw = {}
     for token in tokens:
-        # Filter out tokens with digits, punctuation, or length < 2
-        if len(token) < 2:
+        token = token.lower()
+        if len(token) < 2 or not token.isalpha():
             continue
-        if not token.isalpha():
-            continue
-        bow_kw[token] = bow_kw.get(token, 0) + 1
+        stemmed = stemmer.stem(token)
+        bow_kw[stemmed] = bow_kw.get(stemmed, 0) + 1
     return bow_kw
