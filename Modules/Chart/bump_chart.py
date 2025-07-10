@@ -27,20 +27,18 @@ def draw_bump_chart(bow_dfs):
             axs.plot(bump_df.index, bump_df[column], marker=marker, alpha=alpha,
                      markersize=12, color=color, mec="Black")
 
-    c = 0
     for year in years:
         if year % 2 == 1:
-            serie = table.T.iloc[1:, year - 2015].apply(lambda x: x.split(", ") if pd.notna(x) else ["(0)", ""]).apply(pd.Series)
-            for n in range(len(serie)):
-                try:
+            try:
+                serie = table.T.iloc[1:, year - 2015].apply(lambda x: x.split(", ") if pd.notna(x) else ["(0)", ""]).apply(pd.Series)
+                for n in range(len(serie)):
                     x = 0.25 + year - 1
                     y = int(serie.iloc[n, 0][1:-1]) + 1.25
                     text = serie.iloc[n, 1]
                     axs.annotate(text, xy=(x, y), ha="left", color="Gray", fontsize=fz - 3)
                     axs.quiver(x + 0.5, y - 0.4, 0.25, 0, color="gray", scale_units='xy', angles='xy', scale=1.2, width=0.002)
-                except:
-                    continue
-            c += 1
+            except Exception:
+                continue
 
     axs.set_xticks(bump_df.index, labels=years, fontsize=fz)
     axs.set_yticks(range(0, int(np.nanmax(bump_df.values)) + 2, 5),
