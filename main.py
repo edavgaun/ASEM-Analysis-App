@@ -49,6 +49,8 @@ st.markdown("""
 
 # Title
 st.title("ASEM 2025 Dashboard Explorer")
+st.caption("Based on: Avalos-Gauna (2025); Avalos-Gauna, Cokar, & Via (2025) – ASEM 2025 Proceedings")
+
 
 # Row 1
 with st.container():
