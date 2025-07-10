@@ -1,9 +1,13 @@
 import pandas as pd
 import numpy as np
 from Modules.Utils.get_dict import get_dict
+from nltk.corpus import stopwords
+import nltk
+nltk.download('stopwords')  # Optional: only needed once
+
 
 def get_bump_data(bow_dfs, k=12):
-    filter_words = get_dict() + ["  ", "review"]
+    filter_words = stopwords.words("english") + get_dict() + ["  ", "review"]
     table = pd.DataFrame(np.zeros((10, 1 + k), dtype=object), columns=["Year"] + [f"Top W{n}" for n in range(1, k + 1)])
 
     for row in range(10):
