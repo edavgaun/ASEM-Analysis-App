@@ -169,6 +169,6 @@ with st.container():
         st.caption("Top ranked words across the years\n– keywords in color were preselected")
 
     with col_rest:
-        draw_bump_chart(bow_dfs)
+        #draw_bump_chart(bow_dfs)
 
 
