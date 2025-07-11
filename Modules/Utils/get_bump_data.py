@@ -15,28 +15,30 @@ def get_bump_data(bow_dfs, k=12):
         df = bow_dfs[year]
         filtered = df[~df.Word.isin(filter_words)].head(k).Word
         topW = [f"({i}), {str(t)}" for i, t in zip(filtered.index.tolist(), filtered.values.tolist())]
-        table.at[row, "Year"] = year
+        table.loc[row, "Year"] = year
         for col, word in enumerate(topW):
-            table.iat[row, col + 1] = word
+            table.iloc[row, col + 1] = word
 
     table["Year"] = table["Year"].astype(int)
 
-    bump_words = {
-        word: [] for word in
-        set(w.split(", ")[1] for w in table.iloc[:, 1:].values.flatten() if pd.notna(w))
-    }
-
+    bump_words={z:[] for z in set([w.split(", ")[1] for y in table.iloc[:, 1:].values for w in y])}
     for _, row in table.iterrows():
         words_present = {}
-        for cell in row[1:]:
-            if pd.notna(cell):
+        for cell in row[1:]:  # skip Year column
                 rank_str, word = cell.split(", ")
                 rank = int(rank_str.strip("()"))
                 words_present[word] = rank
+        
+        # For each keyword in bump_words, append rank or np.nan for this year
         for word in bump_words:
-            bump_words[word].append(words_present.get(word, np.nan))
+            if word in words_present:
+                bump_words[word].append(words_present[word]+1)
+            else:
+                bump_words[word].append(np.nan)
 
     years = list(range(2015, 2025))
     bump_df = pd.DataFrame(bump_words, index=years)
+
+    st.write(bump_words)
 
     return table, bump_df
