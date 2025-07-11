@@ -57,5 +57,3 @@ def draw_bump_chart(bow_dfs):
     plt.legend(title="Keyword", bbox_to_anchor=(1.01, 1), loc='upper left', fontsize=fz)
     plt.tight_layout()
     st.pyplot(fig)
-
-    st.write(table)
