@@ -44,6 +44,4 @@ def get_bump_data(bow_dfs, k=12):
     years = list(range(2015, 2025))
     bump_df = pd.DataFrame(bump_words, index=years)
 
-    st.write(bump_words)
-
     return table, bump_df
