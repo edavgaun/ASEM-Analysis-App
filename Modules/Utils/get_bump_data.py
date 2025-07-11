@@ -8,7 +8,7 @@ import streamlit as st
 
 
 def get_bump_data(bow_dfs, k=12):
-    filter_words = stopwords.words("english") + get_dict() + ["  ", "review"]
+    filter_words =  get_dict() + ["  ", "review"]
     streamlit_words = ['based', 'data', 'ha', 'keywords', 'used', 'wa']
     filter_words+=streamlit_words
     filter_words.remove('system')
@@ -19,8 +19,9 @@ def get_bump_data(bow_dfs, k=12):
     for row in range(10):
         year = 2015 + row
         df = bow_dfs[year]
-        filtered = df[~df.Word.isin(filter_words)].head(k).Word
+        filtered = df[~df.Word.isin(stopwords.words("english"))].head(k).Word
         filtered.reset_index(drop=True, inplace=True)
+        filtered = df[~df.Word.isin(filter_words)].head(k).Word
         topW = [f"({i}), {str(t)}" for i, t in zip(filtered.index.tolist(), filtered.values.tolist())]
         table.loc[row, "Year"] = year
         for col, word in enumerate(topW):
