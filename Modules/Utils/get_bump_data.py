@@ -11,6 +11,7 @@ def get_bump_data(bow_dfs, k=12):
     filter_words = stopwords.words("english") + get_dict() + ["  ", "review"]
     streamlit_words = ['based', 'data', 'ha', 'keywords', 'used', 'wa']
     filter_words+=streamlit_words
+    filter_words.remove('system')
     
     table = pd.DataFrame(np.zeros((10, 1 + k), dtype=object),
                          columns=["Year"] + [f"Top W{n}" for n in range(1, k + 1)])
