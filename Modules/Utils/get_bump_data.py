@@ -4,6 +4,8 @@ from nltk.corpus import stopwords
 import nltk
 nltk.download('stopwords', quiet=True)
 from Modules.Utils.get_dict import get_dict
+import streamlit as st
+
 
 def get_bump_data(bow_dfs, k=12):
     filter_words = stopwords.words("english") + get_dict() + ["  ", "review"]
