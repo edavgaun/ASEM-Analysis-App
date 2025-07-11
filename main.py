@@ -161,14 +161,14 @@ with st.container():
         st.pyplot(fig2)
 
 # Row 5 – Bump Chart
-with st.container():
-    col1, col_rest = st.columns([1, 5])
+#with st.container():
+#    col1, col_rest = st.columns([1, 5])
 
-    with col1:
-        st.subheader("Bump Chart")
-        st.caption("Top ranked words across the years\n– keywords in color were preselected")
+#    with col1:
+#        st.subheader("Bump Chart")
+#        st.caption("Top ranked words across the years\n– keywords in color were preselected")
 
-    with col_rest:
-        #draw_bump_chart(bow_dfs)
+#    with col_rest:
+#        draw_bump_chart(bow_dfs)
 
 
