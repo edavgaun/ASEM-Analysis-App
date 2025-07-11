@@ -21,7 +21,6 @@ def get_bump_data(bow_dfs, k=12):
         df = bow_dfs[year]
         filtered = df[~df.Word.isin(stopwords.words("english"))].head(k).Word
         filtered.reset_index(drop=True, inplace=True)
-        st.write(filtered)
         filtered = df[~df.Word.isin(filter_words)].head(k).Word
         topW = [f"({i}), {str(t)}" for i, t in zip(filtered.index.tolist(), filtered.values.tolist())]
         table.loc[row, "Year"] = year
