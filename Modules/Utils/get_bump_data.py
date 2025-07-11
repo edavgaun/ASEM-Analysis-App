@@ -18,6 +18,10 @@ def get_bump_data(bow_dfs, k=12):
     for row in range(10):
         year = 2015 + row
         df = bow_dfs[year]
+        present = set(df['Word']).intersection(filter_words)
+        if present:
+            st.write("🚨 Still present in df.Word despite filter_words:", present)
+
         filtered = df[~df.Word.isin(filter_words)].head(k).Word
         topW = [f"({i}), {str(t)}" for i, t in zip(filtered.index.tolist(), filtered.values.tolist())]
         table.loc[row, "Year"] = year
