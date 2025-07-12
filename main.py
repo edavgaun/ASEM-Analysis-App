@@ -100,46 +100,46 @@ with tabs[0]:
     st.dataframe(df_slice[["Title", "KeyWords", "Abstract", "Paper"]], use_container_width=True)
 
     with st.container():
-    col1, col_chart = st.columns([1, 3])
-
-        with col1:
-            st.markdown("### ⚙️ Settings")
+        col1, col_chart = st.columns([1, 3])
     
-            # Top N selector
-            top_n = st.slider("Top N words", min_value=5, max_value=50, value=20, step=1)
-    
-            # Toggle to remove own stopwords
-            remove_own_stopwords = st.checkbox("Remove own stopwords", value=True)
-    
-        with col_chart:
-            # Rebuild token list
-            text = " ".join(df_slice["Paper"].dropna().astype(str).tolist()).lower()
-            tokens = re.findall(r'\b[a-z]{3,}\b', text)
-    
-            # Combine NLTK + optional own stopwords
-            stop_words = set(stopwords.words('english'))
-            if remove_own_stopwords:
-                stop_words = stop_words.union(own_stopwords)
-    
-            words = [w for w in tokens if w not in stop_words]
-    
-            # Get top N words
-            word_freq = Counter(words)
-            most_common = word_freq.most_common(top_n)
-            freq_df = pd.DataFrame(most_common, columns=["Word", "Frequency"])
-    
-            # Sorted horizontal bar chart (Altair)
-            import altair as alt
-            chart = alt.Chart(freq_df).mark_bar().encode(
-                y=alt.Y("Word:N", sort="-x", title="Word"),
-                x=alt.X("Frequency:Q", title="Frequency"),
-                tooltip=["Word", "Frequency"]
-            ).properties(
-                height=400,
-                title=f"Top {top_n} Words in Selected Papers"
-            )
-    
-            st.altair_chart(chart, use_container_width=True)
+            with col1:
+                st.markdown("### ⚙️ Settings")
+        
+                # Top N selector
+                top_n = st.slider("Top N words", min_value=5, max_value=50, value=20, step=1)
+        
+                # Toggle to remove own stopwords
+                remove_own_stopwords = st.checkbox("Remove own stopwords", value=True)
+        
+            with col_chart:
+                # Rebuild token list
+                text = " ".join(df_slice["Paper"].dropna().astype(str).tolist()).lower()
+                tokens = re.findall(r'\b[a-z]{3,}\b', text)
+        
+                # Combine NLTK + optional own stopwords
+                stop_words = set(stopwords.words('english'))
+                if remove_own_stopwords:
+                    stop_words = stop_words.union(own_stopwords)
+        
+                words = [w for w in tokens if w not in stop_words]
+        
+                # Get top N words
+                word_freq = Counter(words)
+                most_common = word_freq.most_common(top_n)
+                freq_df = pd.DataFrame(most_common, columns=["Word", "Frequency"])
+        
+                # Sorted horizontal bar chart (Altair)
+                import altair as alt
+                chart = alt.Chart(freq_df).mark_bar().encode(
+                    y=alt.Y("Word:N", sort="-x", title="Word"),
+                    x=alt.X("Frequency:Q", title="Frequency"),
+                    tooltip=["Word", "Frequency"]
+                ).properties(
+                    height=400,
+                    title=f"Top {top_n} Words in Selected Papers"
+                )
+        
+                st.altair_chart(chart, use_container_width=True)
 
 
 # ☁️ Tab 2: Word Cloud & Bubble Chart
