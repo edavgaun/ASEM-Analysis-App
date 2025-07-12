@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import re
+import altair as alt
 
 @st.cache_resource
 def load_nltk_data():
@@ -114,9 +115,18 @@ with tabs[0]:
     # Convert to DataFrame and sort
     freq_df = pd.DataFrame(most_common, columns=['Word', 'Frequency'])
     freq_df = freq_df.sort_values("Frequency", ascending=False)
-        
-    # Set index for sorted bar chart
-    st.bar_chart(freq_df.set_index("Word"))
+
+    chart = alt.Chart(freq_df).mark_bar().encode(
+        y=alt.Y("Word:N", sort="-x", title="Word"),
+        x=alt.X("Frequency:Q", title="Frequency"),
+        tooltip=["Word", "Frequency"]
+    ).properties(
+        height=400,
+        width=700
+    )
+    
+    st.altair_chart(chart, use_container_width=True)
+
 
 # ☁️ Tab 2: Word Cloud & Bubble Chart
 with tabs[1]:
