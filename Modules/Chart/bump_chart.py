@@ -5,8 +5,8 @@ import streamlit as st
 import numpy as np
 from Modules.Utils.get_bump_data import get_bump_data
 
-def draw_bump_chart(bow_dfs, k=12, custom_stopwords=True, highlight_topics=None):
-    table, bump_df = get_bump_data(bow_dfs, k=k, custom_stopwords=custom_stopwords)
+def draw_bump_chart(bow_dfs, k=12, highlight_topics=None):
+    table, bump_df = get_bump_data(bow_dfs, k=k)
 
     if highlight_topics is None:
         highlight_topics = ["sustainability", "leadership", "energy", "ai", "technology", "team"]
