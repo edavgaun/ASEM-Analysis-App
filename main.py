@@ -128,15 +128,15 @@ with tabs[0]:
             most_common = word_freq.most_common(top_n)
             freq_df = pd.DataFrame(most_common, columns=["Word", "Frequency"])
     
-            # Sorted horizontal bar chart (Altair)
-            import altair as alt
+            # Sorted Vertical bar chart (Altair)
             chart = alt.Chart(freq_df).mark_bar().encode(
-                y=alt.Y("Word:N", sort="-x", title="Word"),
-                x=alt.X("Frequency:Q", title="Frequency"),
-                tooltip=["Word", "Frequency"]
+            x=alt.X("Word:N", sort="-y", title="Word"),
+            y=alt.Y("Frequency:Q", title="Frequency"),
+            tooltip=["Word", "Frequency"]
             ).properties(
-                height=400,
-                title=f"Top {top_n} Words in Selected Papers"
+            width=700,
+            height=400,
+            title=f"Top {top_n} Words in Selected Papers"
             )
     
             st.altair_chart(chart, use_container_width=True)
