@@ -5,11 +5,14 @@ import streamlit as st
 import numpy as np
 from Modules.Utils.get_bump_data import get_bump_data
 
-def draw_bump_chart(bow_dfs):
-    table, bump_df = get_bump_data(bow_dfs)
+def draw_bump_chart(bow_dfs, k=12, custom_stopwords=None, highlight_topics=None):
+    table, bump_df = get_bump_data(bow_dfs, k=k, custom_stopwords=custom_stopwords)
+
+    if highlight_topics is None:
+        highlight_topics = ["sustainability", "leadership", "energy", "ai", "technology", "team"]
     years = table["Year"].tolist()
     fz = 12
-    topics = ["sustainability", "leadership", "energy", "ai", "technology", "team"]
+    topics = [t.lower() for t in highlight_topics]
     colors = sns.color_palette("tab10", n_colors=10)
 
     fig, axs = plt.subplots(figsize=(12, 6))
