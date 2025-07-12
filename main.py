@@ -36,8 +36,34 @@ data_full = get_wide_df()
 st.set_page_config(layout="wide")
 st.markdown("""
     <style>
-        .block-container { padding-top: 0rem; padding-bottom: 1rem; padding-left: 2rem; padding-right: 2rem; }
-        .css-18e3th9 { padding-top: 0rem !important; }
+    /* Style the horizontal tab bar */
+    div[data-baseweb="tab-list"] {
+        border-bottom: 3px solid #1f77b4;  /* Blue underline */
+        padding-bottom: 5px;
+        background-color: #f0f2f6;  /* Light background */
+    }
+
+    /* Make each tab slightly bolder */
+    div[data-baseweb="tab"] {
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        margin-right: 0.5rem;
+    }
+
+    /* Highlight selected tab with shadow and color */
+    div[data-baseweb="tab"] > button[aria-selected="true"] {
+        background-color: #ffffff;
+        color: #1f77b4;
+        border: 2px solid #1f77b4;
+        border-radius: 0.5rem;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.15);
+    }
+
+    /* Subtle hover effect on other tabs */
+    div[data-baseweb="tab"] > button:hover {
+        background-color: #e0eafc;
+    }
     </style>
 """, unsafe_allow_html=True)
 
