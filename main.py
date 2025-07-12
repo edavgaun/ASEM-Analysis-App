@@ -158,8 +158,9 @@ with tabs[1]:
         st.subheader("Keyword Frequency Bubble Chart")
         selected_words = st.multiselect(
             "Select keywords to visualize:",
-            options=data_full["Word"].tolist(),
-            default=data_full["Word"].head(5).tolist()
+            word_options=[word for word in data_full["Word"].tolist() if word not in own_stopwords]
+            options=word_options,
+            default=word_options[:5]
         )
         if selected_words:
             Bubble_chart(selected_words)
