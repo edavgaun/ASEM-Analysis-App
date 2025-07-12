@@ -35,12 +35,19 @@ data_full = get_wide_df()
 # Layout setup
 st.set_page_config(layout="wide")
 st.markdown("""
-<style>
-.block-container > div:nth-child(1) h1 {
-    text-align: left !important;
-    margin-bottom: 0.3rem !important;
-}
-</style>
+    <style>
+        /* Remove default padding */
+        .block-container {
+            padding-top: 0rem;
+            padding-bottom: 1rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        /* Optional: tweak header spacing */
+        .css-18e3th9 {
+            padding-top: 0rem !important;
+        }
+    </style>
 """, unsafe_allow_html=True)
 
 # Title
