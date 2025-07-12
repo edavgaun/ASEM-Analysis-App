@@ -14,10 +14,8 @@ load_nltk_data()
 from collections import Counter
 import nltk
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 
 # Ensure stopwords and tokenizer are ready
-nltk.download('punkt')
 nltk.download('stopwords')
 
 # Utils imports
@@ -100,14 +98,13 @@ with tabs[0]:
     st.dataframe(df_slice[["Title", "KeyWords", "Abstract", "Paper"]], use_container_width=True)
 
     # Combine text from the 'Paper' column
-    text = " ".join(df_slice["Paper"].dropna().astype(str).tolist())
+    text = " ".join(df_slice["Paper"].dropna().astype(str).tolist()).lower()
 
-    # Tokenize and lowercase
-    tokens = word_tokenize(text.lower())
+    # Tokenize using regex (only alphabetic words, min 3 letters)
+    tokens = re.findall(r'\b[a-z]{3,}\b', text)
 
     # Filter: keep only alphabetic tokens and remove English stopwords
-    stop_words = set(stopwords.words('english')).union(own_stopwords)
-    words = [w for w in tokens if w.isalpha() and w not in stop_words]
+    words = [w for w in tokens if w.isalpha() and w not in stopwords.words('english')]
 
     # Create a frequency distribution
     word_freq = Counter(words)
