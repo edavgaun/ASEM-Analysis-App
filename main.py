@@ -50,6 +50,32 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* Highlight active tab */
+div[data-baseweb="tab"] > button[aria-selected="true"] {
+    color: #d62828 !important;         /* Bright red */
+    font-weight: 700 !important;
+    border-bottom: 3px solid #d62828 !important;
+    background-color: #fdf0f0 !important;
+}
+
+/* Improve unselected tab visibility */
+div[data-baseweb="tab"] > button {
+    font-size: 1.05rem !important;
+    padding: 0.4rem 1rem !important;
+    color: #333 !important;
+    transition: background-color 0.3s ease;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+/* Add hover effect */
+div[data-baseweb="tab"] > button:hover {
+    background-color: #f5f5f5 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Title
 st.title("ASEM Dashboard Explorer, 2015–2024")
 st.caption("📘 Based on: Edgar Avalos-Gauna; (2025), *10 Years of ASEM Proceedings*")
