@@ -11,6 +11,14 @@ def load_nltk_data():
     nltk.download('omw-1.4')
 
 load_nltk_data()
+from collections import Counter
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+# Ensure stopwords and tokenizer are ready
+nltk.download('punkt')
+nltk.download('stopwords')
 
 # Utils imports
 from Modules.Utils.get_df import get_df
@@ -90,6 +98,26 @@ with tabs[0]:
     row_range = st.slider("Select row range", 0, max_rows - 1, value=(0, min(10, max_rows - 1)), key="overview_slider")
     df_slice = df.iloc[row_range[0]:row_range[1] + 1]
     st.dataframe(df_slice[["Title", "KeyWords", "Abstract", "Paper"]], use_container_width=True)
+
+    # Combine text from the 'Paper' column
+    text = " ".join(df_slice["Paper"].dropna().astype(str).tolist())
+
+    # Tokenize and lowercase
+    tokens = word_tokenize(text.lower())
+
+    # Filter: keep only alphabetic tokens and remove English stopwords
+    stop_words = set(stopwords.words('english')).union(own_stopwords)
+    words = [w for w in tokens if w.isalpha() and w not in stop_words]
+
+    # Create a frequency distribution
+    word_freq = Counter(words)
+    most_common = word_freq.most_common(20)  # top 20 words
+
+    # Convert to DataFrame for plotting
+    freq_df = pd.DataFrame(most_common, columns=['Word', 'Frequency'])
+
+    # Bar chart
+    st.bar_chart(freq_df.set_index("Word"))
 
 # ☁️ Tab 2: Word Cloud & Bubble Chart
 with tabs[1]:
