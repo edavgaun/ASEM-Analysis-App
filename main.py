@@ -109,7 +109,7 @@ with tabs[0]:
             top_n = st.slider("Top N words for the filtered selection of papers", min_value=5, max_value=50, value=20, step=1)
     
             # Toggle to remove own stopwords
-            remove_own_stopwords = st.checkbox("Remove own stopwords", value=True)
+            remove_own_stopwords = st.checkbox("Remove custom stopwords", value=True)
     
         with col_chart:
             # Rebuild token list
