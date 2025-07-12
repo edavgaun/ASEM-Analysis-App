@@ -81,6 +81,8 @@ tabs = st.tabs([
     "📈 Bump Chart"
 ])
 
+st.markdown("<hr style='margin-top: -10px;'>", unsafe_allow_html=True)
+
 # 📄 Tab 1: Paper Overview
 with tabs[0]:
     st.subheader("Conference Papers Overview")
