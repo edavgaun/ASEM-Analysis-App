@@ -7,7 +7,7 @@ def get_bow(tokens):
     for token in tokens:
         if len(token) < 2:
             continue
-        if not token.isalpha():
+        if not token.isalpha() and token not in {"4.0", "5.0"}:
             continue
 
         lemma = lemmatizer.lemmatize(token)
