@@ -111,10 +111,11 @@ with tabs[0]:
     word_freq = Counter(words)
     most_common = word_freq.most_common(20)  # top 20 words
 
-    # Convert to DataFrame for plotting
+    # Convert to DataFrame and sort
     freq_df = pd.DataFrame(most_common, columns=['Word', 'Frequency'])
-
-    # Bar chart
+    freq_df = freq_df.sort_values("Frequency", ascending=False)
+        
+    # Set index for sorted bar chart
     st.bar_chart(freq_df.set_index("Word"))
 
 # ☁️ Tab 2: Word Cloud & Bubble Chart
