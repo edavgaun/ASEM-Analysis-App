@@ -227,6 +227,6 @@ with tabs[4]:
         draw_bump_chart(
             bow_dfs=bow_dfs,
             k=top_k,
-            use_custom_stopwords=custom_stopwords,
+            custom_stopwords=custom_stopwords,
             highlight_topics=highlight_words
         )
