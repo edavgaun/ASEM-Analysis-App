@@ -211,9 +211,6 @@ with tabs[4]:
     with col1:
         st.markdown("### ⚙️ Settings")
 
-        # ✅ Toggle custom stopwords (get_dict)
-        custom_stopwords = st.checkbox("Apply Custom Stopwords", value=True)
-
         # ✅ Top N words
         top_k = st.slider("Top N Keywords per Year", min_value=5, max_value=25, value=12)
 
@@ -227,6 +224,5 @@ with tabs[4]:
         draw_bump_chart(
             bow_dfs=bow_dfs,
             k=top_k,
-            custom_stopwords=custom_stopwords,
             highlight_topics=highlight_words
         )
