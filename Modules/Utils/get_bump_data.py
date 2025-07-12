@@ -6,16 +6,11 @@ nltk.download('stopwords', quiet=True)
 from Modules.Utils.get_dict import get_dict
 import streamlit as st
 
-def get_bump_data(bow_dfs, k=12, custom_stopwords=True):
+def get_bump_data(bow_dfs, k=12):
     from nltk.corpus import stopwords
 
-    filter_words = ["  ", "review"] + ['based', 'data', 'ha', 'keywords', 'used', 'wa']
-
-    if custom_stopwords:
-        filter_words += get_dict()
-
-    if 'system' in filter_words:
-        filter_words.remove('system')
+    filter_words = ["  ", "review"] + ['based', 'data', 'ha', 'keywords', 'used', 'wa'] + get_dict()
+    filter_words.remove('system')
     
     table = pd.DataFrame(np.zeros((10, 1 + k), dtype=object),
                          columns=["Year"] + [f"Top W{n}" for n in range(1, k + 1)])
