@@ -212,7 +212,7 @@ with tabs[4]:
         st.markdown("### ⚙️ Settings")
 
         # ✅ Top N words
-        top_k = st.slider("Top N Keywords per Year", min_value=5, max_value=25, value=12)
+        top_k = st.slider("Top N Keywords per Year after removing Stopwords", min_value=5, max_value=25, value=12)
 
         # ✅ Highlight keywords
         available_words = sorted(set(data_full["Word"]))
