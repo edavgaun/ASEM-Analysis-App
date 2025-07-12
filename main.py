@@ -205,4 +205,26 @@ with tabs[3]:
 with tabs[4]:
     st.subheader("Keyword Trends – Bump Chart")
     st.caption("Top-ranked words across years – preselected keywords highlighted")
-    draw_bump_chart(bow_dfs)
+
+    # --- Sidebar Settings ---
+    col1, col2 = st.columns([1, 2])
+
+    with col1:
+        st.markdown("### ⚙️ Settings")
+
+        # 1. Top N keywords
+        k = st.slider("Number of Top Keywords", min_value=5, max_value=25, value=12, step=1)
+
+        # 2. Custom Stopwords
+        custom_stop_input = st.text_area("Add Custom Stopwords (comma-separated)", 
+                                         value="supply, process, strategy")
+        custom_stopwords = [w.strip().lower() for w in custom_stop_input.split(",") if w.strip()]
+
+        # 3. Highlight Keywords
+        available_words = sorted(set(data_full["Word"]))  # data_full already loaded
+        highlight_words = st.multiselect("Keywords to Highlight in Chart", 
+                                         options=available_words, 
+                                         default=["sustainability", "leadership", "ai", "energy", "technology", "team"])
+
+    with col2:
+        draw_bump_chart(bow_dfs, k=k, custom_stopwords=custom_stopwords, highlight_topics=highlight_words)
