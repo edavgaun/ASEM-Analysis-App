@@ -151,7 +151,7 @@ with tabs[1]:
         st.write("Total different words used:", sum(len(b) for b in bows.values()))
         stopword_hits = sum(sum(1 for word in bows[y] if word in own_stopwords) for y in bows)
         unique_stopwords_found = set(word for y in bows for word in bows[y] if word in own_stopwords)
-        st.write(f"✨ Unique stopwords matched: {len(unique_stopwords_found)}")
+        st.write(f"✨ Custom Stopwords Matched: {len(unique_stopwords_found)}")
         draw_word_cloud(bows)
 
     with col2:
