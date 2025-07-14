@@ -1,5 +1,6 @@
 # Libraries
 import streamlit as st
+import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -40,6 +41,7 @@ from Modules.Chart.Bubble_chart import Bubble_chart
 # Variable setup
 dfs, corpuses, tokenses, bows, bow_dfs = get_bows_dict()
 data_full = get_wide_df()
+lda_url="https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/refs/heads/main/assets/ASEM_LDA.html"
 
 # Layout setup
 st.set_page_config(layout="wide")
@@ -75,6 +77,7 @@ st.markdown("""
 - The **Network Graph** shows term co-occurrence.
 - Use the **Radar Charts** to compare keyword relevance across two years.
 - The **Bump Chart** tracks top keywords over time.
+- The **LDA Chart** shows the Latent Dirichlet Allocation analysis made on the proceedings.
 
 ---
 """)
@@ -85,7 +88,8 @@ tabs = st.tabs([
     "☁️ Word Cloud & Bubble Chart",
     "🌐 Co-occurrence Network",
     "📊 Radar Charts",
-    "📈 Bump Chart"
+    "📈 Bump Chart",
+    "🧠 Topic Modeling (LDA)"
 ])
 
 st.markdown("<hr style='margin-top: -10px;'>", unsafe_allow_html=True)
@@ -228,3 +232,13 @@ with tabs[4]:
             k=top_k,
             highlight_topics=highlight_words
         )
+
+# 🧠 Tab 6: Topic Modeling (LDA)
+with tabs[5]:
+    st.subheader("Topic Modeling using LDA")
+    st.caption("This interactive LDA visualization shows the latent topics extracted from ASEM paper abstracts and metadata (2015–2024).")
+
+    try:
+        components.iframe(lda_url, height=800, scrolling=True)
+    except Exception as e:
+        st.error(f"Failed to load the LDA visualization: {e}")
