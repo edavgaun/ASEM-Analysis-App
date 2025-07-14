@@ -9,3 +9,4 @@ wordcloud
 Pillow
 networkx
 nltk
+requests
