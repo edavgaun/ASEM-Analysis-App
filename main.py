@@ -1,6 +1,5 @@
 # Libraries
 import streamlit as st
-import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -37,6 +36,7 @@ from Modules.Chart.radar_chart import radar_chart
 from Modules.Chart.bump_chart import draw_bump_chart
 from Modules.Utils.get_wide_df import get_wide_df
 from Modules.Chart.Bubble_chart import Bubble_chart
+from Modules.Chart.render_lda import render_lda
 
 # Variable setup
 dfs, corpuses, tokenses, bows, bow_dfs = get_bows_dict()
@@ -236,9 +236,6 @@ with tabs[4]:
 # 🧠 Tab 6: Topic Modeling (LDA)
 with tabs[5]:
     st.subheader("Topic Modeling using LDA")
-    st.caption("This interactive LDA visualization shows the latent topics extracted from ASEM paper abstracts and metadata (2015–2024).")
+    st.caption("This interactive topic model shows emerging themes across ASEM proceedings (2015–2024).")
 
-    try:
-        components.iframe(lda_url, height=800, scrolling=True)
-    except Exception as e:
-        st.error(f"Failed to load the LDA visualization: {e}")
+    render_lda(lda_url)
