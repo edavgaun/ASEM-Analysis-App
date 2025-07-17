@@ -49,7 +49,7 @@ st.markdown("""
     <style>
         /* Remove default padding */
         .block-container {
-            padding-top: 0rem;
+            padding-top: 1rem;
             padding-bottom: 1rem;
             padding-left: 2rem;
             padding-right: 2rem;
@@ -62,7 +62,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Title
-st.title("/nASEM Dashboard Explorer, 2015–2024")
+st.title("ASEM Dashboard Explorer, 2015–2024")
 st.caption("📘 Based on: Edgar Avalos-Gauna; (2025), *10 Years of ASEM Proceedings*")
 st.caption("Avalos-Gauna, E. (2025). *ASEM Uncovered: A Decade of Insights Through NLP*. ASEM 2025, Boise, ID, USA.")
 
