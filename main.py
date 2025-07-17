@@ -38,6 +38,23 @@ from Modules.Utils.get_wide_df import get_wide_df
 from Modules.Chart.Bubble_chart import Bubble_chart
 from Modules.Chart.render_lda import render_lda
 
+# Google Analytics tracking
+import streamlit.components.v1 as components
+GA_TRACKING_ID = "G-3Z4H4BXDH2"
+
+GA_CODE = f"""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_TRACKING_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', '{GA_TRACKING_ID}');
+</script>
+"""
+
+components.html(GA_CODE, height=0, width=0)
+
 # Variable setup
 dfs, corpuses, tokenses, bows, bow_dfs = get_bows_dict()
 data_full = get_wide_df()
