@@ -38,7 +38,7 @@ from Modules.Utils.get_wide_df import get_wide_df
 from Modules.Chart.Bubble_chart import Bubble_chart
 from Modules.Chart.render_lda import render_lda
 
-# Google Analytics tracking
+# Google Analytics tracking: https://analytics.google.com/analytics/web/#/p497275571/reports/
 import streamlit.components.v1 as components
 GA_TRACKING_ID = "G-3Z4H4BXDH2"
 
