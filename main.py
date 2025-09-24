@@ -26,6 +26,8 @@ from Modules.Utils.get_word_frq import get_word_frq
 from Modules.Utils.get_tokens import get_tokens
 from Modules.Utils.get_bows_dict import get_bows_dict
 from Modules.Utils.get_dict import get_dict
+from Modules.Utils.UI import show_new_section_instructions
+
 own_stopwords = set(get_dict())
 own_stopwords.remove('system')
 
@@ -95,6 +97,7 @@ st.markdown("""
 - Use the **Radar Charts** to compare keyword relevance across two years.
 - The **Bump Chart** tracks top keywords over time.
 - The **LDA Chart** shows the Latent Dirichlet Allocation analysis made on the proceedings.
+- The **New Sections** will show you links to new tools that are being developed as a continuous effort to improve this work
 
 ---
 """)
@@ -106,7 +109,8 @@ tabs = st.tabs([
     "🌐 Co-occurrence Network",
     "📊 Radar Charts",
     "📈 Bump Chart",
-    "🧠 Topic Modeling (LDA)"
+    "🧠 Topic Modeling (LDA)",
+    "🌱 New and Upcoming Sections"
 ])
 
 st.markdown("<hr style='margin-top: -10px;'>", unsafe_allow_html=True)
@@ -256,3 +260,6 @@ with tabs[5]:
     st.caption("This interactive topic model shows emerging themes across ASEM proceedings (2015–2024).")
 
     render_lda(lda_url)
+
+with tabs[6]:
+    show_new_section_instructions()
