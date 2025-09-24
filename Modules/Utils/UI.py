@@ -27,12 +27,12 @@ def show_umap_instructions():
     st.markdown("""
     ### 🧭 How to Use This App
 
-    This tool lets you explore over 11,000 IEOM conference papers in a 2D space generated using UMAP and LLM-based embeddings.
+    This tool lets you explore over 10 years of ASEM conference papers in a 2D space generated using UMAP and LLM-based embeddings.
 
-    - **Filter** by year, conference, and topic to narrow down the dataset.
+    - **Filter** by year and topic to narrow down the dataset.
     - Each dot represents a paper. Similar papers appear closer together.
-    - **Centroids** are shown to help you visualize semantic drift (vertical dashed lines).
+    - **Year Centroids** are shown to help you visualize semantic drift (vertical dashed lines).
     - Hover over points (in Plotly) to see details and explore relationships between topics and years.
 
-    This interface supports meta-analysis, comparative research, and exploration of regional and thematic trends in AI and supply chain discussions.
+    This interface supports meta-analysis, comparative research, and exploration of thematic trends in Engineering Management discussions.
     """)
