@@ -23,6 +23,25 @@ def show_header(text_title):
     st.caption("American Society for Engineering Management (ASEM) 2025 International Annual Conference and 46th Annual Meeting, 24 - 27 September 2025")
 
 
+def show_new_section_instructions():
+    st.markdown("""
+    ### 🧭 Choose a Visualization Tool
+
+    This tab will include links to new sections that are being developed as future contributions to this work.
+
+    - 🧭 **UMAP Embedding Explorer** (Added Sept 2025) 
+      Explore papers in a 2D space based on semantic similarity.  
+      👉 [Open UMAP Explorer](https://asem-2025-umap.streamlit.app/)
+
+    - 🔍 **BOW TF - IDF Analysis**  (Added Sept-Oct 2025)
+      View the most frequent and Distinctive words given a particular Conference and Year.  
+      👉 [Open BOW Explorer](https://asem-2025-tf-idf.streamlit.app/)
+      
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+
+
 def show_umap_instructions():
     st.markdown("""
     ### 🧭 How to Use This App
