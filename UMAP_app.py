@@ -24,10 +24,6 @@ selected_years = st.multiselect(
     "Select Years", sorted(df["Year"].unique()), default=sorted(df["Year"].unique())
 )
 
-selected_conferences = st.multiselect(
-    "Select Conferences", sorted(df["Conference"].unique()), default=sorted(df["Conference"].unique())
-)
-
 selected_topics = st.multiselect(
     "Select Topics", options=df["FinalTopicName"].unique(), default=df["FinalTopicName"].unique()
 )
@@ -36,7 +32,6 @@ selected_topics = st.multiselect(
 fig, filt_df = plot_umap_scatter(
     df,
     selected_years=selected_years,
-    selected_conferences=selected_conferences,
     selected_topics=selected_topics
 )
 
