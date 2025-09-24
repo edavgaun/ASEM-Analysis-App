@@ -6,7 +6,7 @@ from Modules.Utils.UI import set_layout, show_header, show_umap_instructions
 # Load dataset
 @st.cache_data
 def load_data():
-    return pd.read_json("Data/ieom_full.json.gz", compression="gzip")
+    return pd.read_json("Data/asem_full.json.gz", compression="gzip")
 
 df = load_data()
 
