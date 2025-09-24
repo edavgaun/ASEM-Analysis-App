@@ -4,10 +4,9 @@ import plotly.graph_objects as go
 import streamlit as st
 
 @st.cache_data
-def filter_df(df, selected_years, selected_conferences, selected_topics):
+def filter_df(df, selected_years, selected_topics):
     return df[
         df["Year"].isin(selected_years) &
-        df["Conference"].isin(selected_conferences) &
         df["FinalTopicName"].isin(selected_topics)
     ]
 
@@ -16,8 +15,8 @@ def split_label(text, words_per_line=2):
     lines = [' '.join(words[i:i + words_per_line]) for i in range(0, len(words), words_per_line)]
     return "<br>".join(lines)
 
-def plot_umap_scatter(df, selected_years=None, selected_conferences=None, selected_topics=None):
-    df = filter_df(df, selected_years, selected_conferences, selected_topics)
+def plot_umap_scatter(df, selected_years=None, selected_topics=None):
+    df = filter_df(df, selected_years,selected_topics)
     df["Year"] = df["Year"].astype(str)
 
     # Get list of visible topics after filtering
