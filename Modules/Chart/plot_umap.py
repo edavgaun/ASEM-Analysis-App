@@ -86,7 +86,7 @@ def plot_umap_scatter(df, selected_years=None, selected_topics=None):
             y=y_mean+delta,
             text=label,
             showarrow=False,
-            font=dict(size=12, color="black"),
+            font=dict(size=12, color=full_color_map[topic]),
             bgcolor="rgba(255,255,255,0.7)",
             bordercolor="black",
             borderwidth=1
