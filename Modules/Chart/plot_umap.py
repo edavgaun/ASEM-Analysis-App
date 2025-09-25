@@ -50,14 +50,14 @@ def plot_umap_scatter(df, selected_years=None, selected_topics=None):
         y="y",
         color="FinalTopicName",
         color_discrete_map=filtered_color_map,
-        hover_data={"Title": True, "Year": True, "x": False, "y":False, 'Conference':True},
+        hover_data={"Title": True, "Year": True, "x": False, "y":False},
         opacity=0.6
     )
 
     fig.update_layout(
         height=800,
         title=(
-            "UMAP Projection of IEOM Papers by Thematic Clusters"
+            "UMAP Projection of ASEM Papers by Thematic Clusters"
             "<br><span style='font-size:14px; font-weight:normal'>"
             "(Use the toolbar at the top-right corner to zoom, pan, and explore → )"
             "</span>"
