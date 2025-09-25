@@ -9,7 +9,6 @@ def filter_df(df, selected_years, selected_topics):
         df["Year"].isin(selected_years) &
         df["FinalTopicName"].isin(selected_topics)
     ]
-    st.write(final)
     return final
 
 def split_label(text, words_per_line=2):
@@ -27,25 +26,19 @@ def plot_umap_scatter(df, selected_years=None, selected_topics=None):
     # Define full color map
     full_color_map = {
         "Outliers / Uncategorized": "#d3d3d3",
-        "Maintenance & Reliability Engineering": "#2ca02c",
-        "Sustainability & Green Supply Chains": "#ff7f0e",
-        "Industry 4.0 & Smart Manufacturing": "#2ca02c",
-        "Project & Construction Management": "#9467bd",
-        "Innovation & Entrepreneurship": "#8c564b",
-        "Machine Learning Methods": "#e377c2",
-        "Employee Behavior & Job Performance": "#17becf",
-        "3D Printing & Surface Engineering": "#7f7f7f",
-        "Renewable Energy & Power Systems": "#bcbd22",
-        "Vehicle Routing & Optimization Problems": "#4b0082",
-        "Ergonomics & Worker Safety": "#ff1493",
-        "TQM, ISO & Quality Management": "#17becf",
-        "Inventory Control & Demand Forecasting": "#ffcc00",
-        "Public Policy & Government Programs": "#009e73",
-        "Learning, Students & Education": "#e41a1c",
-        "Lean Six Sigma & DMAIC": "#377eb8",
-        "Customer Experience & Brand Perception": "#f781bf",
-        "Supply Chain & Risk Assessment": "#a65628",
-        "Financial Markets & Corporate Finance": "#984ea3"
+        "Education & Leadership": "#2ca02c",
+        "Construction Risk and Decision Making": "#ff7f0e",
+        "Energy and Infrastructure Resilience": "#2ca02c",
+        "Supply Chain Optimization and Logistics": "#9467bd",
+        "Innovation and Market Dynamics": "#8c564b",
+        "Healthcare Systems": "#e377c2",
+        "Lean Six Sigma Applications": "#17becf",
+        "Advanced Manufacturing and Industry 4.0": "#7f7f7f",
+        "Cybersecurity and Resilience Systems": "#bcbd22",
+        "Reliability and Maintenance Strategies": "#4b0082",
+        "Industry 4.0 & AI": "#ff1493",
+        "Uncertainty-Driven Design Decisions": "#17becf",
+        "Machine Learning": "#ffcc00",
     }
 
     # Restrict color map to visible topics
