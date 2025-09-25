@@ -141,7 +141,7 @@ def add_centroids_to_umap(
     # Determine Y-axis range (used for vertical lines and label placement)
     y_range = fig.layout.yaxis.range or [df[y_col].min(), df[y_col].max()]
     y_min, y_max = y_range[0], y_range[1]
-    label_y = y_max - padding
+    label_y = y_min + padding
 
     # Iterate through unique years and plot vertical dashed lines + labels
     for year in sorted(df[year_col].unique()):
