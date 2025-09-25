@@ -33,7 +33,7 @@ def plot_umap_scatter(df, selected_years=None, selected_topics=None):
         "Innovation and Market Dynamics": "#8c564b",
         "Healthcare Systems": "#e377c2",
         "Lean Six Sigma Applications": "#17becf",
-        "Advanced Manufacturing and Industry 4.0": "#7f7f7f",
+        "Advanced Manufacturing and Industry 4.0": "#8B0000",
         "Cybersecurity and Resilience Systems": "#bcbd22",
         "Reliability and Maintenance Strategies": "#4b0082",
         "Industry 4.0 & AI": "#ff1493",
