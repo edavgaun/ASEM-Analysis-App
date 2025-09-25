@@ -86,21 +86,31 @@ st.caption("📘 Based on: Edgar Avalos-Gauna; (2025), *10 Years of ASEM Proceed
 st.caption("Avalos-Gauna, E. (2025). *ASEM Uncovered: A Decade of Insights Through NLP*. ASEM 2025, Boise, ID, USA.")
 
 # General Instructions
-st.markdown("""
-### 🧭 How to Use This Dashboard
+col1, col2 = st.columns([4, 1])
 
-- Use the **tabs** below to switch between different types of visual analyses.
-- Each tab allows different types of filtering so make sure to familiarize yourself with them first.
-- **Paper Overview** shows Conference Proceedings raw abstracts and metadata.
-- **Word Cloud** and **Bubble Chart** let you explore keyword frequencies.
-- The **Network Graph** shows term co-occurrence.
-- Use the **Radar Charts** to compare keyword relevance across two years.
-- The **Bump Chart** tracks top keywords over time.
-- The **LDA Chart** shows the Latent Dirichlet Allocation analysis made on the proceedings.
-- The **New Sections** will show you links to new tools that are being developed as a continuous effort to improve this work
+with col1:
+    st.markdown("""
+    ### 🧭 How to Use This Dashboard
 
----
-""")
+    - Use the **tabs** below to switch between different types of visual analyses.
+    - Each tab allows different types of filtering so make sure to familiarize yourself with them first.
+    - **Paper Overview** shows Conference Proceedings raw abstracts and metadata.
+    - **Word Cloud** and **Bubble Chart** let you explore keyword frequencies.
+    - The **Network Graph** shows term co-occurrence.
+    - Use the **Radar Charts** to compare keyword relevance across two years.
+    - The **Bump Chart** tracks top keywords over time.
+    - The **LDA Chart** shows the Latent Dirichlet Allocation analysis made on the proceedings.
+    - The **New Sections** will show you links to new tools that are being developed as a continuous effort to improve this work
+
+    ---
+    """)
+
+with col2:
+    st.image(
+        "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/assets/QR%20Code.png",
+        caption="Scan to open the app",
+        use_column_width=True
+    )
 
 # Tabs
 tabs = st.tabs([
