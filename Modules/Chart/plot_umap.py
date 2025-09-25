@@ -5,10 +5,12 @@ import streamlit as st
 
 @st.cache_data
 def filter_df(df, selected_years, selected_topics):
-    return df[
+    final= df[
         df["Year"].isin(selected_years) &
         df["FinalTopicName"].isin(selected_topics)
     ]
+    st.write(final)
+    return final
 
 def split_label(text, words_per_line=2):
     words = text.split()
