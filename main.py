@@ -86,7 +86,7 @@ st.caption("📘 Based on: Edgar Avalos-Gauna; (2025), *10 Years of ASEM Proceed
 st.caption("Avalos-Gauna, E. (2025). *ASEM Uncovered: A Decade of Insights Through NLP*. ASEM 2025, Boise, ID, USA.")
 
 # General Instructions
-col1, col2 = st.columns([4, 1])
+col1, col2 = st.columns([8, 1])
 
 with col1:
     st.markdown("""
