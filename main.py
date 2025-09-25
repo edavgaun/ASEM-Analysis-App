@@ -109,7 +109,7 @@ with col2:
     st.image(
         "https://raw.githubusercontent.com/edavgaun/ASEM-Analysis-App/main/assets/QR%20Code.png",
         caption="Scan to open the app",
-        use_column_width=True
+        use_container_width=True
     )
 
 # Tabs
