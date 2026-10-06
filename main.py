@@ -7,7 +7,7 @@ import re
 import altair as alt
 
 @st.cache_resource
-def load_nltk_data():
+def load_nltk_data(:
     import nltk
     nltk.download('wordnet')
     nltk.download('omw-1.4')
